@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scary Fairy — Insurance Truths That'll Haunt You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06040d;
+            --bg-card: #0d091a;
+            --bg-card-2: #130e22;
+            --accent: #ff6b2b;
+            --accent-dark: #e05220;
+            --accent-glow: rgba(255, 107, 43, 0.28);
+            --text: #f0e8ff;
+            --text-muted: #8074a8;
+            --red: #ff4d4d;
+            --red-muted: rgba(255, 77, 77, 0.12);
+            --border: #1e1435;
+            --border-accent: rgba(255, 107, 43, 0.28);
+        }
+
+        /* ═══ LIGHT MODE ═══ */
+        [data-theme="light"] {
+            --bg: #fdf0e8;
+            --bg-card: #fff9f5;
+            --bg-card-2: #fae8da;
+            --accent-glow: rgba(180, 80, 0, 0.15);
+            --text: #1a0c06;
+            --text-muted: #7a4a30;
+            --red: #c92a2a;
+            --red-muted: rgba(201, 42, 42, 0.07);
+            --border: #e8cdb8;
+            --border-accent: rgba(180, 80, 0, 0.3);
+        }
+        [data-theme="light"] nav { background: rgba(253, 240, 232, 0.93); border-bottom-color: #e8cdb8; }
+        [data-theme="light"] .nav-logo       { color: #8b3a00; }
+        [data-theme="light"] .footer-logo    { color: #8b3a00; }
+        [data-theme="light"] .hero-eyebrow   { color: #8b3a00; }
+        [data-theme="light"] .hero-title em  { color: #8b3a00; text-decoration-color: #8b3a00; }
+        [data-theme="light"] .accent-text    { color: #8b3a00; }
+        [data-theme="light"] .sparkles       { color: #8b3a00; }
+        [data-theme="light"] .stat-num       { color: #8b3a00; }
+        [data-theme="light"] .view-all       { color: #8b3a00; }
+        [data-theme="light"] .testi-author   { color: #8b3a00; }
+        [data-theme="light"] .sc-type        { color: #8b3a00; }
+        [data-theme="light"] .sc-insured-label { color: #8b3a00; }
+        [data-theme="light"] .trust-icon     { color: #8b3a00; }
+        [data-theme="light"] .dot            { color: #8b3a00; }
+        [data-theme="light"] .quote-mark     { color: #8b3a00; }
+        [data-theme="light"] .testi-badge    { background: rgba(160,70,0,.08); color: #8b3a00; border-color: rgba(160,70,0,.22); }
+        [data-theme="light"] .hero-meta .dot { color: #8b3a00; }
+        [data-theme="light"] .tog.active { background: rgba(160,70,0,.08); border-color: #c85a00; color: #7a2800; }
+        [data-theme="light"] .sc-insured { background: rgba(160,70,0,.04); border-color: rgba(160,70,0,.18); }
+        [data-theme="light"] .mascot-card  { background: rgba(255,255,255,.97); box-shadow: 0 4px 30px rgba(0,0,0,.1); border-color: rgba(160,70,0,.18); }
+        [data-theme="light"] .mascot-name  { color: #8b3a00; }
+        [data-theme="light"] .mascot-svg { filter: drop-shadow(0 4px 20px rgba(160,70,0,.4)); }
+        [data-theme="light"] .float-tag    { color: #7a4a30; background: rgba(0,0,0,.04); border-color: #e8cdb8; }
+        [data-theme="light"] .newsletter { background: #f5e2d2; }
+        [data-theme="light"] .cta-section::before { background: radial-gradient(ellipse at center, rgba(160,70,0,.06) 0%, transparent 65%); }
+        [data-theme="light"] .testi-card.highlighted { background: rgba(160,70,0,.04); border-color: rgba(160,70,0,.22); }
+        [data-theme="light"] .section-head h2 .sparkles { color: #8b3a00; }
+        [data-theme="light"] input[type="range"] { background: linear-gradient(to right, #c85a00 var(--fill, 20%), #e8cdb8 var(--fill, 20%)); }
+        [data-theme="light"] input[type="range"]::-webkit-slider-thumb { background: #c85a00; box-shadow: 0 0 10px rgba(200,90,0,.3); }
+        [data-theme="light"] input[type="range"]::-moz-range-thumb { background: #c85a00; }
+        [data-theme="light"] .progress-fill { background: #c85a00; }
+
+        /* ── Smooth theme transition ── */
+        body, nav, .qcard, .scenario-card, .step-card, .testi-card,
+        .dark-box, .newsletter, footer, .footer-bottom,
+        .trust-bar, .stats-strip, .mascot-card, .float-tag {
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+        }
+
+        /* ── Theme toggle button ── */
+        .theme-toggle {
+            background: var(--bg-card-2); border: 1px solid var(--border);
+            border-radius: 999px; width: 34px; height: 34px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 1rem; transition: all .2s; flex-shrink: 0;
+        }
+        .theme-toggle:hover { border-color: var(--border-accent); transform: scale(1.08); }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ── Firefly Canvas ── */
+        #firefly-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── Layout ── */
+        .wrap { position: relative; z-index: 1; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* ── Type ── */
+        .hand { font-family: 'Caveat', cursive; }
+        .accent-text { color: var(--accent); }
+
+        /* ── NAV ── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: rgba(6, 4, 13, 0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .nav-logo {
+            font-family: 'Caveat', cursive;
+            font-size: 3.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            white-space: nowrap;
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+        .nav-nyx { flex-shrink: 0; animation: float 5s ease-in-out infinite; }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0.25rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.88rem;
+            padding: 0.4rem 0.85rem;
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a.active {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            border-radius: 0;
+            padding-bottom: 0.2rem;
+        }
+
+        .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+        .btn-ghost {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.45rem 1.1rem;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+        .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+        .btn-pill {
+            background: var(--accent);
+            color: #06040d;
+            border: none;
+            padding: 0.5rem 1.3rem;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .btn-pill:hover { background: #ff8a4a; box-shadow: 0 4px 20px var(--accent-glow); transform: translateY(-1px); }
+
+        /* ── HERO ── */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 2.5rem;
+            padding: 2.5rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-title {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(3.2rem, 5.5vw, 5.8rem);
+            line-height: 1.05;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title em {
+            font-style: normal;
+            color: var(--accent);
+            text-decoration: underline wavy;
+            text-underline-offset: 8px;
+        }
+
+        .hero-desc {
+            color: var(--text-muted);
+            line-height: 1.75;
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            max-width: 440px;
+        }
+
+        .hero-cta { display: flex; flex-direction: column; gap: 1.1rem; }
+
+        .btn-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.9rem;
+            background: var(--accent);
+            color: #06040d;
+            padding: 1rem 2rem;
+            border-radius: 14px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.06em;
+            width: fit-content;
+            transition: all 0.25s;
+        }
+        .btn-hero:hover { background: #ff8a4a; transform: translateY(-2px); box-shadow: 0 10px 35px var(--accent-glow); }
+
+        .btn-hero-icon {
+            width: 34px; height: 34px;
+            background: rgba(0,0,0,0.18);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+        .hero-meta span { display: flex; align-items: center; gap: 0.35rem; }
+        .hero-meta .dot { color: var(--accent); font-size: 0.9rem; }
+
+        /* Hero right — mascot */
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 520px;
+        }
+
+        .mascot-wrap { position: relative; }
+
+        .mascot-svg {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 196px;
+            height: auto;
+            animation: nyx-fly 12s ease-in-out infinite;
+            filter: drop-shadow(0 6px 40px rgba(255, 107, 43, 0.55));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0) rotate(-2deg); }
+            50% { transform: translateX(-50%) translateY(-22px) rotate(2deg); }
+        }
+
+        @keyframes sparkle-twinkle {
+            0%, 100% { opacity: 0.9; transform: scale(1) rotate(0deg); }
+            35% { opacity: 0.2; transform: scale(0.6) rotate(18deg); }
+            70% { opacity: 0.65; transform: scale(0.8) rotate(-12deg); }
+        }
+        @keyframes sparkle-drift {
+            0%, 100% { transform: translateY(0); opacity: 0.72; }
+            50% { transform: translateY(-11px); opacity: 1; }
+        }
+        .sp1 { animation: sparkle-twinkle 2.4s ease-in-out infinite; transform-origin: center; }
+        .sp2 { animation: sparkle-twinkle 3.1s ease-in-out infinite 0.7s; transform-origin: center; }
+        .sp3 { animation: sparkle-twinkle 2.8s ease-in-out infinite 1.4s; transform-origin: center; }
+        .sp4 { animation: sparkle-drift 3.6s ease-in-out infinite 0.4s; }
+        .sp5 { animation: sparkle-drift 2.9s ease-in-out infinite 1.2s; }
+        .sp6 { animation: sparkle-twinkle 3.9s ease-in-out infinite 2.1s; transform-origin: center; }
+        /* ── NYX FLIGHT + MAGIC ANIMATIONS ── */
+        @keyframes nyx-fly {
+            0%   { transform: translateX(-50%) translateY(0px)    rotate(-3deg) scale(1);    }
+            8%   { transform: translateX(calc(-50% + 14px)) translateY(-16px) rotate(-8deg) scale(1.02); }
+            20%  { transform: translateX(calc(-50% + 22px)) translateY(-32px) rotate(-4deg) scale(1.03); }
+            32%  { transform: translateX(calc(-50% - 16px)) translateY(-36px) rotate(5deg)  scale(1.01); }
+            /* ✦ magic twirl ✦ */
+            43%  { transform: translateX(calc(-50% - 20px)) translateY(-34px) rotate(3deg)  scale(1.06); }
+            49%  { transform: translateX(calc(-50% - 19px)) translateY(-38px) rotate(200deg) scale(1.14); }
+            55%  { transform: translateX(calc(-50% - 18px)) translateY(-36px) rotate(360deg) scale(1.06); }
+            /* glide back */
+            67%  { transform: translateX(calc(-50% + 18px)) translateY(-22px) rotate(-6deg) scale(1.02); }
+            80%  { transform: translateX(calc(-50% + 6px))  translateY(-10px) rotate(-4deg) scale(1);    }
+            92%  { transform: translateX(calc(-50% - 4px))  translateY(-3px)  rotate(2deg)  scale(1);    }
+            100% { transform: translateX(-50%) translateY(0px)    rotate(-3deg) scale(1);    }
+        }
+
+        /* ── WING FLUTTER ── */
+        @keyframes wing-upper {
+            0%, 100% { transform: scaleY(1)    skewX(0deg); }
+            30%      { transform: scaleY(0.78) skewX(5deg); }
+            65%      { transform: scaleY(1.18) skewX(-4deg); }
+        }
+        @keyframes wing-lower {
+            0%, 100% { transform: scaleY(1)    skewX(0deg); }
+            30%      { transform: scaleY(1.22) skewX(-5deg); }
+            65%      { transform: scaleY(0.8)  skewX(4deg); }
+        }
+        .nyx-wu { transform-box: fill-box; transform-origin: center bottom; animation: wing-upper 1s ease-in-out infinite; }
+        .nyx-wl { transform-box: fill-box; transform-origin: center top;    animation: wing-lower 1s ease-in-out infinite 0.15s; }
+
+        /* ── WAND MAGIC PULSE ── */
+        @keyframes wand-ring {
+            0%, 100% { transform: scale(1);   opacity: 0.2; }
+            60%      { transform: scale(1.4); opacity: 0.6; }
+            80%      { transform: scale(2);   opacity: 1;   }
+            94%      { transform: scale(3.2); opacity: 0;   }
+        }
+        @keyframes wand-core {
+            0%, 100% { transform: scale(1);   opacity: 0.4; }
+            55%      { transform: scale(1.25); opacity: 0.85; }
+            82%      { transform: scale(1.8); opacity: 1;   }
+            96%      { transform: scale(2.4); opacity: 0.15; }
+        }
+        @keyframes wand-dot {
+            0%, 100% { transform: scale(1);   filter: brightness(1);   }
+            50%      { transform: scale(1.4); filter: brightness(2);   }
+            82%      { transform: scale(2.5); filter: brightness(4) drop-shadow(0 0 6px #ff6b2b); }
+            96%      { transform: scale(0.7); filter: brightness(0.8); }
+        }
+        @keyframes sparks-burst {
+            0%, 100% { opacity: 0.65; transform: scale(1);   }
+            55%      { opacity: 0.3;  transform: scale(0.9); }
+            82%      { opacity: 1;    transform: scale(1.3); }
+            90%      { opacity: 1;    transform: scale(1.5); }
+        }
+        .wg1 { transform-box: fill-box; transform-origin: center; animation: wand-ring 3s ease-in-out infinite; }
+        .wg2 { transform-box: fill-box; transform-origin: center; animation: wand-core 3s ease-in-out infinite 0.4s; }
+        .wg3 { transform-box: fill-box; transform-origin: center; animation: wand-dot  3s ease-in-out infinite 0.8s; }
+        .wsparks { animation: sparks-burst 3s ease-in-out infinite 0.6s; }
+
+
+        .mascot-card {
+            background: rgba(15, 17, 15, 0.92);
+            border: 1px solid var(--border-accent);
+            border-radius: 22px;
+            padding: 1.8rem 2rem;
+            max-width: 300px;
+            margin-top: 70px;
+            box-shadow: 0 0 60px rgba(255, 107, 43, 0.08), inset 0 1px 0 rgba(255, 107, 43, 0.08);
+            animation: pulse-card 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-card {
+            0%, 100% { box-shadow: 0 0 40px rgba(255, 107, 43, 0.06); }
+            50% { box-shadow: 0 0 60px rgba(255, 107, 43, 0.18); }
+        }
+
+        .mascot-name {
+            font-family: 'Caveat', cursive;
+            color: var(--accent);
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        .mascot-body {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.65;
+        }
+
+        .hero-floats {
+            position: absolute;
+            right: 0;
+            bottom: 10%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            align-items: flex-end;
+        }
+        .float-tag {
+            font-family: 'Caveat', cursive;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+        }
+
+        /* ── DIVIDER ── */
+        .divider { height: 1px; background: var(--border); }
+
+        /* ── TRUST BAR ── */
+        .trust-bar {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--text-muted);
+            font-size: 0.83rem;
+        }
+        .trust-icon { color: var(--accent); font-size: 1rem; }
+        .trust-avatars { display: flex; }
+        .trust-avatar {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            border: 2px solid var(--bg);
+            background: var(--bg-card-2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem;
+            margin-left: -6px;
+        }
+        .trust-avatar:first-child { margin-left: 0; }
+
+        /* ── SECTION SHELL ── */
+        .section { padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 1.75rem;
+        }
+        .section-head h2 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.15;
+        }
+        .section-head p {
+            color: var(--text-muted);
+            margin-top: 0.6rem;
+            font-size: 0.92rem;
+        }
+        .sparkles { color: var(--accent); font-size: 0.85em; }
+
+        /* ── SCENARIO CARDS ── */
+        .scenarios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .scenario-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 1.75rem;
+            transition: all 0.3s ease;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .scenario-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 22px;
+            background: linear-gradient(135deg, rgba(255,107,43,0.03) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .scenario-card:hover {
+            border-color: rgba(255, 107, 43, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 50px rgba(255, 107, 43, 0.06);
+        }
+        .scenario-card:hover::after { opacity: 1; }
+
+        .sc-type {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+        .sc-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.55rem;
+            line-height: 1.2;
+            margin-bottom: 0.85rem;
+        }
+        .sc-story {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            line-height: 1.72;
+            margin-bottom: 1.4rem;
+        }
+
+        .sc-cost {
+            background: var(--red-muted);
+            border: 1px solid rgba(255, 77, 77, 0.18);
+            border-radius: 14px;
+            padding: 1rem 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        .sc-cost-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+        }
+        .sc-cost-amt {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            color: var(--red);
+            line-height: 1;
+            animation: scary-pulse 2.5s ease-in-out infinite;
+        }
+        @keyframes scary-pulse {
+            0%, 100% { color: #ff4d4d; }
+            50% { color: #ff8888; }
+        }
+        .sc-cost-note {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+
+        .sc-insured {
+            background: rgba(255, 107, 43, 0.05);
+            border: 1px solid var(--border-accent);
+            border-radius: 14px;
+            padding: 1rem 1.1rem;
+        }
+        .sc-insured-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+        .sc-insured-text {
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        .sc-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: rgba(255, 107, 43, 0.07);
+            color: var(--accent);
+            border: 1px solid var(--border-accent);
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            margin-top: 1rem;
+        }
+
+        /* ── STATS STRIP ── */
+        .stats-strip {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 2rem;
+        }
+        .stats-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .stat-item { text-align: center; }
+        .stat-num {
+            font-family: 'Caveat', cursive;
+            font-size: 2.4rem;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .stat-lbl { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.3rem; max-width: 160px; }
+        .stat-sep { width: 1px; height: 50px; background: var(--border); }
+
+        /* ── HOW IT WORKS ── */
+        .steps-row {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+        }
+        .step-card {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: border-color 0.3s;
+        }
+        .step-card:hover { border-color: var(--border-accent); }
+        .step-num {
+            width: 38px; height: 38px;
+            background: var(--accent);
+            color: #080a08;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .step-ico { font-size: 1.8rem; margin-bottom: 0.4rem; }
+        .step-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.25rem;
+            margin-bottom: 0.35rem;
+        }
+        .step-desc { color: var(--text-muted); font-size: 0.83rem; line-height: 1.6; }
+        .step-arrow {
+            flex-shrink: 0;
+            width: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+
+        /* ── TWO-COL BOXES ── */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+        .dark-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 2.5rem;
+        }
+        .dark-box h3 {
+            font-family: 'Caveat', cursive;
+            font-size: 1.9rem;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+        .dark-box p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.7; }
+
+        .cost-chips { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+        .cost-chip {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.9rem 1.1rem;
+            text-align: center;
+            flex: 1;
+            min-width: 110px;
+        }
+        .chip-amt { font-family: 'Caveat', cursive; font-size: 1.45rem; color: var(--red); }
+        .chip-lbl { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+        .green-box {
+            border-color: var(--border-accent);
+            background: linear-gradient(135deg, rgba(255,107,43,0.04) 0%, var(--bg-card) 100%);
+        }
+        .green-box h3 { color: var(--accent); }
+
+        .btn-large {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--accent);
+            color: #080a08;
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.25s;
+        }
+        .btn-large:hover { background: #ff8a4a; transform: translateY(-1px); box-shadow: 0 6px 25px var(--accent-glow); }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: transparent;
+            color: var(--text);
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.25s;
+        }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ── TESTIMONIALS ── */
+        .section-row-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2rem;
+        }
+        .section-row-header h2 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            line-height: 1.15;
+        }
+        .view-all { color: var(--accent); font-size: 0.85rem; text-decoration: none; white-space: nowrap; transition: opacity 0.2s; }
+        .view-all:hover { opacity: 0.75; }
+
+        .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+
+        .testi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.75rem;
+        }
+        .testi-card.highlighted {
+            border-color: var(--border-accent);
+            background: linear-gradient(135deg, rgba(255,107,43,0.04) 0%, var(--bg-card) 100%);
+        }
+        .quote-mark {
+            font-family: 'Caveat', cursive;
+            font-size: 2.8rem;
+            color: var(--accent);
+            line-height: 0.6;
+            display: block;
+            margin-bottom: 0.9rem;
+        }
+        .testi-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 1.25rem;
+        }
+        .testi-author { font-size: 0.83rem; color: var(--accent); }
+        .testi-badge {
+            display: inline-block;
+            font-size: 0.67rem;
+            background: rgba(255,77,77,0.1);
+            color: #ff9090;
+            border: 1px solid rgba(255,77,77,0.2);
+            padding: 0.18rem 0.5rem;
+            border-radius: 999px;
+            margin-top: 0.5rem;
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            text-align: center;
+            padding: 3.5rem 2rem;
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(255,107,43,0.05) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .cta-title {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            line-height: 1.1;
+            margin-bottom: 1.4rem;
+        }
+        .cta-desc {
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto 1.75rem;
+            line-height: 1.72;
+            font-size: 0.95rem;
+        }
+        .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        /* ── NEWSLETTER ── */
+        .newsletter { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .newsletter-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .newsletter h3 { font-family: 'Caveat', cursive; font-size: 1.75rem; margin-bottom: 0.4rem; }
+        .newsletter p { color: var(--text-muted); font-size: 0.88rem; }
+        .nl-form { display: flex; gap: 0.7rem; }
+        .nl-input {
+            flex: 1;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.75rem 1.1rem;
+            color: var(--text);
+            font-size: 0.88rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .nl-input::placeholder { color: var(--text-muted); }
+        .nl-input:focus { border-color: var(--border-accent); }
+        .nl-btn {
+            background: var(--accent);
+            color: #080a08;
+            border: none;
+            padding: 0.75rem 1.4rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+        .nl-btn:hover { background: #ff8a4a; }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 3.5rem 2rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 220px 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+        .footer-logo {
+            font-family: 'Caveat', cursive;
+            font-size: 1.65rem;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+        }
+        .footer-tagline { color: var(--text-muted); font-size: 0.78rem; line-height: 1.6; margin-bottom: 1.3rem; }
+        .footer-socials { display: flex; gap: 0.6rem; }
+        .social-btn {
+            width: 34px; height: 34px;
+            background: var(--bg-card-2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+        .social-btn:hover { border-color: var(--border-accent); color: var(--accent); }
+        .footer-col h4 { font-size: 0.82rem; font-weight: 600; margin-bottom: 1rem; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+        .footer-bottom p { color: var(--text-muted); font-size: 0.78rem; }
+        .footer-btm-links { display: flex; gap: 1.5rem; }
+        .footer-btm-links a { color: var(--text-muted); text-decoration: none; font-size: 0.78rem; transition: color 0.2s; }
+        .footer-btm-links a:hover { color: var(--accent); }
+
+        /* ── Scroll Reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .reveal.in { opacity: 1; transform: translateY(0); }
+
+        /* ── Responsive ── */
+        @media (max-width: 960px) {
+            .nav-links { display: none; }
+            .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem 2rem; min-height: auto; }
+            .hero-right { display: none; }
+            .two-col { grid-template-columns: 1fr; }
+            .steps-row { flex-direction: column; }
+            .step-arrow { transform: rotate(90deg); height: 36px; width: 100%; }
+            .testi-grid { grid-template-columns: 1fr; }
+            .newsletter-inner { grid-template-columns: 1fr; gap: 2rem; }
+            footer { grid-template-columns: 1fr 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+            .scenarios-grid { grid-template-columns: 1fr; }
+            .stats-inner { gap: 2.5rem; }
+            .stat-sep { display: none; }
+            .section { padding: 3.5rem 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            footer { grid-template-columns: 1fr; }
+            .nl-form { flex-direction: column; }
+            .cta-btns { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="firefly-canvas"></canvas>
+
+<div class="wrap">
+
+<!-- ════ NAV ════ -->
+<nav>
+    <div class="nav-inner">
+        <div class="nav-logo">
+            <svg class="nav-nyx" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 46" width="42" height="38" aria-hidden="true" overflow="visible" style="overflow:visible">
+              <path d="M25,26 C19,16 5,13 7,23 C9,30 19,28 25,26Z" fill="#ff6b2b" opacity="0.88"/>
+              <path d="M25,26 C31,16 45,13 43,23 C41,30 31,28 25,26Z" fill="#ff6b2b" opacity="0.88"/>
+              <path d="M25,29 C19,23 10,27 9,36 C8,42 18,43 23,36 C24,33 25,31 25,29Z" fill="#e05220" opacity="0.65"/>
+              <path d="M25,29 C31,23 40,27 41,36 C42,42 32,43 27,36 C26,33 25,31 25,29Z" fill="#e05220" opacity="0.65"/>
+              <ellipse cx="25" cy="21" rx="14" ry="15" fill="#f5c5a3"/>
+              <path d="M12,19 Q12,10 16,6 Q21,1 25,0 Q29,1 34,6 Q38,10 38,19" fill="#2a1835"/>
+              <path d="M12,18 Q14,11 18,9 Q22,6 24,11 Q20,13 19,17Z" fill="#2a1835"/>
+              <path d="M38,18 Q36,11 32,9 Q28,6 26,11 Q30,13 31,17Z" fill="#2a1835"/>
+              <!-- Witch hat -->
+              <path d="M11,7 Q25,-14 39,7Z" fill="#0e0820"/>
+              <ellipse cx="25" cy="7" rx="14" ry="2.5" fill="#0d0820"/>
+              <rect x="13" y="5" width="24" height="3.5" rx="1" fill="#ff6b2b"/>
+              <circle cx="25" cy="-13" r="1.3" fill="#ffd700" opacity="0.9"/>
+              <ellipse cx="19" cy="20" rx="5" ry="5.5" fill="white"/>
+              <ellipse cx="31" cy="20" rx="5" ry="5.5" fill="white"/>
+              <ellipse cx="19" cy="21" rx="3.5" ry="4" fill="#5c3587"/>
+              <ellipse cx="31" cy="21" rx="3.5" ry="4" fill="#5c3587"/>
+              <ellipse cx="19" cy="21" rx="2" ry="2.5" fill="#100818"/>
+              <ellipse cx="31" cy="21" rx="2" ry="2.5" fill="#100818"/>
+              <circle cx="21" cy="18" r="1.6" fill="white"/>
+              <circle cx="33" cy="18" r="1.6" fill="white"/>
+              <ellipse cx="12" cy="27" rx="5" ry="3" fill="#ff8fab" opacity="0.3"/>
+              <ellipse cx="38" cy="27" rx="5" ry="3" fill="#ff8fab" opacity="0.3"/>
+              <path d="M19,30 Q25,36 31,30" fill="none" stroke="#d4956a" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="19" cy="21" r="5.5" fill="none" stroke="#ff6b2b" stroke-width="0.9" opacity="0.88"/>
+              <circle cx="31" cy="21" r="5.5" fill="none" stroke="#ff6b2b" stroke-width="0.9" opacity="0.88"/>
+              <path d="M24.5,21 L25.5,21" stroke="#ff6b2b" stroke-width="0.9" opacity="0.88"/>
+            </svg>
+            Scary Fairy
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#scenarios">Scary Stories</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="btn-ghost">Login</button>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀️</button>
+        </div>
+    </div>
+</nav>
+
+<!-- ════ HERO ════ -->
+<div class="container" style="max-width:1200px; margin:0 auto;">
+    <div class="hero">
+        <!-- Left -->
+        <div>
+            <div class="hero-eyebrow">✦ &nbsp;your financial wake-up call&nbsp; ✦</div>
+            <h1 class="hero-title">
+                wanna know what's<br>
+                really <em>scary?</em>
+            </h1>
+            <p class="hero-desc">
+                I'll show you real scenarios where one unlucky moment wiped out years of savings. The scary part? It could happen to you. Let's make sure you're not caught off guard.
+            </p>
+            <div class="hero-cta">
+                <button class="btn-hero" onclick="window.location.href='quiz.html'">
+                    <span class="btn-hero-icon">✦</span>
+                    CHECK YOUR SCARYSCORE — FREE →
+                </button>
+                <div class="hero-meta">
+                    <span><span class="dot">✦</span> Free to read</span>
+                    <span><span class="dot">✦</span> Real numbers</span>
+                    <span><span class="dot">✦</span> No signup needed</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right -->
+        <div class="hero-right">
+            <div class="mascot-wrap">
+                <div class="mascot-svg">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" overflow="visible" style="overflow:visible" aria-label="Nyx the Scary Fairy Witch">
+                    <!-- FAIRY WINGS (orange, behind everything) -->
+                    <path class="nyx-wu" d="M100,152 C85,128 48,105 22,122 C12,138 28,166 65,160 C83,156 96,154 100,152Z" fill="#ff6b2b" opacity="0.85"/>
+                    <path class="nyx-wu" d="M100,152 C115,128 152,105 178,122 C188,138 172,166 135,160 C117,156 104,154 100,152Z" fill="#ff6b2b" opacity="0.85"/>
+                    <path class="nyx-wl" d="M100,162 C88,154 60,164 54,182 C50,196 70,200 90,186 C97,180 100,170 100,162Z" fill="#e05220" opacity="0.68"/>
+                    <path class="nyx-wl" d="M100,162 C112,154 140,164 146,182 C150,196 130,200 110,186 C103,180 100,170 100,162Z" fill="#e05220" opacity="0.68"/>
+                    <path d="M100,152 L28,128" stroke="rgba(255,107,43,0.5)" stroke-width="0.8" fill="none"/>
+                    <path d="M100,155 L32,152" stroke="rgba(255,107,43,0.38)" stroke-width="0.6" fill="none"/>
+                    <path d="M100,152 L172,128" stroke="rgba(255,107,43,0.5)" stroke-width="0.8" fill="none"/>
+                    <path d="M100,155 L168,152" stroke="rgba(255,107,43,0.38)" stroke-width="0.6" fill="none"/>
+                    <path d="M100,162 L62,184" stroke="rgba(255,107,43,0.4)" stroke-width="0.6" fill="none"/>
+                    <path d="M100,162 L138,184" stroke="rgba(255,107,43,0.4)" stroke-width="0.6" fill="none"/>
+                    <ellipse cx="60" cy="132" rx="28" ry="18" fill="rgba(255,107,43,0.1)" transform="rotate(-25,60,132)"/>
+                    <ellipse cx="140" cy="132" rx="28" ry="18" fill="rgba(255,107,43,0.1)" transform="rotate(25,140,132)"/>
+
+                    <!-- DARK CLOAK/CAPE layers -->
+                    <path d="M72,162 Q56,198 48,240 L82,240 Q74,198 78,165Z" fill="#0a0616"/>
+                    <path d="M128,162 Q144,198 152,240 L118,240 Q126,198 122,165Z" fill="#0a0616"/>
+
+                    <!-- WIZARD ROBES body -->
+                    <path d="M76,163 Q67,198 64,240 L136,240 Q133,198 124,163 Q112,155 100,154 Q88,155 76,163Z" fill="#14082a"/>
+                    <!-- Robe center seam -->
+                    <path d="M100,158 L100,240" stroke="#0a0616" stroke-width="1.5" fill="none" opacity="0.8"/>
+                    <!-- Robe V-neck opening -->
+                    <path d="M88,162 L100,180 L112,162 L110,158 L100,176 L90,158Z" fill="#080310"/>
+                    <!-- Robe collar trim (thin silver-ish line) -->
+                    <path d="M88,163 L100,180 L112,163" fill="none" stroke="#3a2060" stroke-width="1" opacity="0.8"/>
+                    <!-- Robe buttons -->
+                    <circle cx="100" cy="190" r="2.2" fill="#080310"/>
+                    <circle cx="100" cy="202" r="2.2" fill="#080310"/>
+                    <circle cx="100" cy="214" r="2.2" fill="#080310"/>
+                    <!-- Left sleeve -->
+                    <path d="M76,168 Q50,192 42,220 L58,224 Q65,208 82,188Z" fill="#14082a"/>
+                    <!-- Right sleeve (raised for wand pose) -->
+                    <path d="M124,168 Q148,185 155,208 L143,214 Q134,198 118,182Z" fill="#14082a"/>
+
+                    <!-- WAND (held in right hand) -->
+                    <path d="M148,210 L176,162" stroke="#4a2c0e" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M149,209 L177,161" stroke="#7a4e22" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                    <!-- Wand handle band -->
+                    <path d="M148,210 L153,203" stroke="#2e1808" stroke-width="7" stroke-linecap="round" fill="none"/>
+                    <!-- Magic glow at wand tip -->
+                    <circle class="wg1" cx="176" cy="162" r="11" fill="rgba(255,107,43,0.2)"/>
+                    <circle class="wg2" cx="176" cy="162" r="6"  fill="rgba(255,107,43,0.4)"/>
+                    <circle class="wg3" cx="176" cy="162" r="3"  fill="#ff6b2b"/>
+                    <!-- Magic sparks bursting from tip -->
+                    <g class="wsparks">
+                    <line x1="176" y1="162" x2="186" y2="148" stroke="#ff6b2b" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
+                    <line x1="176" y1="162" x2="190" y2="162" stroke="#ffaa60" stroke-width="1.4" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="176" y1="162" x2="183" y2="174" stroke="#ff6b2b" stroke-width="1.4" stroke-linecap="round" opacity="0.7"/>
+                    </g>
+                    <line x1="176" y1="162" x2="164" y2="150" stroke="#ffcc88" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                    <circle cx="186" cy="148" r="2.5" fill="#ffaa60" opacity="0.9"/>
+                    <circle cx="190" cy="162" r="2"   fill="#ff6b2b" opacity="0.8"/>
+                    <circle cx="183" cy="175" r="2"   fill="#ffaa60" opacity="0.7"/>
+                    <circle cx="163" cy="150" r="1.8" fill="#ffcc88" opacity="0.7"/>
+
+                    <!-- LEFT HAND -->
+                    <ellipse cx="44" cy="221" rx="10" ry="8" fill="#f5c5a3"/>
+                    <path d="M38,220 Q40,215 43,213 M43,220 Q45,214 48,212 M48,219 Q50,215 53,213" stroke="#e8a882" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+                    <!-- RIGHT HAND (gripping wand) -->
+                    <ellipse cx="150" cy="212" rx="9" ry="7" fill="#f5c5a3"/>
+
+                    <!-- NECK -->
+                    <rect x="93" y="140" width="14" height="20" rx="7" fill="#f5c5a3"/>
+
+                    <!-- HOGWARTS SCARF (orange + dark stripes) -->
+                    <path d="M82,147 Q100,143 118,147 Q120,155 118,163 Q100,159 82,163 Q80,155 82,147Z" fill="#ff6b2b" opacity="0.95"/>
+                    <path d="M82,151 Q100,147 118,151 L118,155 Q100,151 82,155Z" fill="#06040d" opacity="0.5"/>
+                    <path d="M82,157 Q100,153 118,157 L118,161 Q100,157 82,161Z" fill="#06040d" opacity="0.35"/>
+                    <!-- Scarf hanging end left -->
+                    <path d="M82,155 Q76,175 73,205 L81,205 Q83,175 89,155Z" fill="#ff6b2b" opacity="0.9"/>
+                    <path d="M82,164 Q77,184 74,205 L79,205 Q83,184 87,164Z" fill="#06040d" opacity="0.4"/>
+                    <!-- Scarf fringe -->
+                    <line x1="73" y1="205" x2="71" y2="212" stroke="#ff6b2b" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+                    <line x1="76" y1="205" x2="74" y2="213" stroke="#ff6b2b" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+                    <line x1="79" y1="205" x2="78" y2="213" stroke="#ff6b2b" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+
+                    <!-- HAIR BACK -->
+                    <path d="M58,93 Q50,52 66,34 Q82,18 100,16 Q118,18 134,34 Q150,52 142,93" fill="#2a1835"/>
+                    <path d="M60,96 Q46,125 48,158 Q52,172 62,176 Q67,155 69,130 Q65,108 68,93Z" fill="#2a1835"/>
+                    <path d="M140,96 Q154,125 152,158 Q148,172 138,176 Q133,155 131,130 Q135,108 132,93Z" fill="#2a1835"/>
+
+                    <!-- HEAD/FACE -->
+                    <ellipse cx="100" cy="97" rx="43" ry="45" fill="#f5c5a3"/>
+
+                    <!-- HAIR FRONT / BANGS -->
+                    <path d="M59,90 Q62,52 76,36 Q87,22 100,20 Q113,22 124,36 Q138,52 141,90" fill="#2a1835"/>
+                    <path d="M62,88 Q67,65 80,60 Q91,55 97,64 Q88,68 83,78 Q75,84 68,91Z" fill="#2a1835"/>
+                    <path d="M138,88 Q133,68 124,64 Q116,60 112,66 Q118,71 122,80 Q128,84 133,90Z" fill="#2a1835"/>
+                    <path d="M95,22 Q98,35 96,52 Q95,62 97,70" stroke="#7a48b8" stroke-width="2.2" fill="none" opacity="0.38" stroke-linecap="round"/>
+
+                    <!-- WITCH HAT (overflow:visible so tip shows above SVG) -->
+                    <!-- Hat ground shadow on hair -->
+                    <ellipse cx="106" cy="60" rx="54" ry="10" fill="#000008" opacity="0.3"/>
+                    <!-- Hat cone -->
+                    <path d="M54,59 Q74,28 108,-42 Q142,28 162,59Z" fill="#0e0820"/>
+                    <!-- Hat cone subtle sheen -->
+                    <path d="M88,44 Q108,-5 118,44 Q108,40 88,44Z" fill="rgba(160,80,255,0.07)"/>
+                    <!-- Hat band (orange) -->
+                    <path d="M66,46 Q108,41 150,46 L147,57 Q108,52 63,57Z" fill="#ff6b2b"/>
+                    <!-- Hat buckle frame -->
+                    <rect x="100" y="44" width="16" height="12" rx="2.5" fill="#06040d"/>
+                    <!-- Hat buckle inner window -->
+                    <rect x="102" y="46" width="12" height="8"  rx="1.5" fill="none" stroke="#ff6b2b" stroke-width="1.3"/>
+                    <!-- Hat brim (top face, lighter) -->
+                    <ellipse cx="106" cy="57" rx="54" ry="12" fill="#160d2c"/>
+                    <!-- Hat brim bottom rim -->
+                    <ellipse cx="106" cy="60" rx="54" ry="9"  fill="#100820"/>
+                    <!-- Hat brim highlight curve -->
+                    <path d="M52,57 Q106,44 160,57" fill="none" stroke="#241848" stroke-width="1.2" opacity="0.8"/>
+                    <!-- Hat tip star -->
+                    <circle cx="108" cy="-42" r="6"  fill="#ff6b2b" opacity="0.95"/>
+                    <circle cx="108" cy="-42" r="12" fill="rgba(255,107,43,0.2)"/>
+                    <circle cx="108" cy="-42" r="16" fill="rgba(255,107,43,0.08)"/>
+                    <!-- Tiny stars near hat tip -->
+                    <circle cx="120" cy="-28" r="2.5" fill="#ffaa60" opacity="0.75"/>
+                    <circle cx="94"  cy="-25" r="2"   fill="#ff6b2b" opacity="0.65"/>
+                    <circle cx="124" cy="-10" r="1.5" fill="#ffcc88" opacity="0.6"/>
+
+                    <!-- EYES -->
+                    <ellipse cx="82"  cy="92" rx="13.5" ry="14.5" fill="white"/>
+                    <ellipse cx="118" cy="92" rx="13.5" ry="14.5" fill="white"/>
+                    <ellipse cx="82"  cy="94" rx="10"   ry="11.5"  fill="#5c3587"/>
+                    <ellipse cx="118" cy="94" rx="10"   ry="11.5"  fill="#5c3587"/>
+                    <ellipse cx="82"  cy="89" rx="7"    ry="5.5"   fill="#8b5ac8" opacity="0.55"/>
+                    <ellipse cx="118" cy="89" rx="7"    ry="5.5"   fill="#8b5ac8" opacity="0.55"/>
+                    <ellipse cx="82"  cy="95" rx="5.5"  ry="6.5"   fill="#100818"/>
+                    <ellipse cx="118" cy="95" rx="5.5"  ry="6.5"   fill="#100818"/>
+                    <circle cx="86"  cy="87" r="4"   fill="white"/>
+                    <circle cx="122" cy="87" r="4"   fill="white"/>
+                    <circle cx="83"  cy="92" r="2.2" fill="white" opacity="0.75"/>
+                    <circle cx="119" cy="92" r="2.2" fill="white" opacity="0.75"/>
+                    <circle cx="78"  cy="98" r="1.2" fill="white" opacity="0.6"/>
+                    <circle cx="114" cy="98" r="1.2" fill="white" opacity="0.6"/>
+                    <!-- Lash lines -->
+                    <path d="M70,103 Q82,109 94,105"  fill="none" stroke="#2a1835" stroke-width="1.2" stroke-linecap="round"/>
+                    <path d="M106,105 Q118,109 130,103" fill="none" stroke="#2a1835" stroke-width="1.2" stroke-linecap="round"/>
+                    <!-- Upper lashes left -->
+                    <path d="M69,85 Q74,78 80,80"  fill="none" stroke="#2a1835" stroke-width="2"   stroke-linecap="round"/>
+                    <path d="M73,81 Q78,74 84,77"  fill="none" stroke="#2a1835" stroke-width="2"   stroke-linecap="round"/>
+                    <path d="M79,79 Q83,73 88,76"  fill="none" stroke="#2a1835" stroke-width="2"   stroke-linecap="round"/>
+                    <path d="M85,78 Q88,72 93,75"  fill="none" stroke="#2a1835" stroke-width="1.7" stroke-linecap="round"/>
+                    <!-- Upper lashes right -->
+                    <path d="M131,85 Q126,78 120,80" fill="none" stroke="#2a1835" stroke-width="2"   stroke-linecap="round"/>
+                    <path d="M127,81 Q122,74 116,77" fill="none" stroke="#2a1835" stroke-width="2"   stroke-linecap="round"/>
+                    <path d="M121,79 Q117,73 112,76" fill="none" stroke="#2a1835" stroke-width="2"   stroke-linecap="round"/>
+                    <path d="M115,78 Q112,72 107,75" fill="none" stroke="#2a1835" stroke-width="1.7" stroke-linecap="round"/>
+                    <!-- Eyebrows -->
+                    <path d="M70,77 Q82,70 94,74"   fill="none" stroke="#2a1835" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M106,74 Q118,70 130,77" fill="none" stroke="#2a1835" stroke-width="3" stroke-linecap="round"/>
+
+                    <!-- ROSY CHEEKS -->
+                    <ellipse cx="68"  cy="110" rx="14" ry="9" fill="#ff8fab" opacity="0.28"/>
+                    <ellipse cx="132" cy="110" rx="14" ry="9" fill="#ff8fab" opacity="0.28"/>
+                    <circle cx="64"  cy="107" r="1.8" fill="#ffb3c6" opacity="0.5"/>
+                    <circle cx="71"  cy="116" r="1.2" fill="#ffb3c6" opacity="0.45"/>
+                    <circle cx="136" cy="107" r="1.8" fill="#ffb3c6" opacity="0.5"/>
+                    <circle cx="129" cy="116" r="1.2" fill="#ffb3c6" opacity="0.45"/>
+
+                    <!-- NOSE & SMILE -->
+                    <path d="M97,112 Q100,116 103,112" fill="none" stroke="#d4956a" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M87,124 Q100,136 113,124" fill="none" stroke="#d4956a" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="87"  cy="124" r="2.2" fill="#d4956a" opacity="0.65"/>
+                    <circle cx="113" cy="124" r="2.2" fill="#d4956a" opacity="0.65"/>
+
+                    <!-- ROUND HP GLASSES -->
+                    <circle cx="82"  cy="93" r="14" fill="none" stroke="#ff6b2b" stroke-width="1.8" opacity="0.92"/>
+                    <circle cx="118" cy="93" r="14" fill="none" stroke="#ff6b2b" stroke-width="1.8" opacity="0.92"/>
+                    <path d="M96,93 L104,93"        stroke="#ff6b2b" stroke-width="1.8" stroke-linecap="round" opacity="0.92"/>
+                    <path d="M68,87 Q64,85 60,83"   stroke="#ff6b2b" stroke-width="1.8" stroke-linecap="round" opacity="0.92"/>
+                    <path d="M132,87 Q136,85 140,83" stroke="#ff6b2b" stroke-width="1.8" stroke-linecap="round" opacity="0.92"/>
+
+                    <!-- FLOATING SPARKLES -->
+                    <text class="sp1" x="5"   y="75"  font-size="20" fill="#ff6b2b" opacity="0.9">✦</text>
+                    <text class="sp2" x="6"   y="155" font-size="15" fill="#ff6b2b" opacity="0.75">✧</text>
+                    <text class="sp4" x="12"  y="210" font-size="13" fill="#ff6b2b" opacity="0.7">✦</text>
+                    <text class="sp5" x="170" y="220" font-size="17" fill="#ff6b2b" opacity="0.75">✧</text>
+                    <text class="sp6" x="168" y="180" font-size="11" fill="#ff6b2b" opacity="0.65">⋆</text>
+                  </svg>
+                </div>
+                <div class="mascot-card">
+                    <div class="mascot-name">✦ hey, i'm Nyx ✦</div>
+                    <p class="mascot-body">
+                        your scary fairy bestie.<br><br>
+                        i'll show you the situations nobody warns you about — and what they actually cost without insurance.<br><br>
+                        still think it can wait? 👀
+                    </p>
+                </div>
+            </div>
+            <div class="hero-floats">
+                <span class="float-tag">chaos &amp; coffee</span>
+                <span class="float-tag">midnight thoughts</span>
+                <span class="float-tag">don't ignore signs</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ════ TRUST BAR ════ -->
+<div class="divider"></div>
+<div class="trust-bar">
+    <div class="trust-item">
+        <div class="trust-avatars">
+            <div class="trust-avatar">😰</div>
+            <div class="trust-avatar">😱</div>
+            <div class="trust-avatar">😤</div>
+            <div class="trust-avatar">🤯</div>
+        </div>
+        <span>12,000+ people had their "oh no" moment reading this</span>
+    </div>
+    <div class="trust-item">
+        <span class="trust-icon">🛡️</span>
+        <span>Plans from IRDAI-registered insurers</span>
+    </div>
+    <div class="trust-item">
+        <span class="trust-icon">✦</span>
+        <span>Real costs. Real scenarios. Real talk.</span>
+    </div>
+</div>
+<div class="divider"></div>
+
+<!-- ════ SCENARIOS ════ -->
+<section id="scenarios">
+    <div class="section">
+        <div class="section-head">
+            <h2><span class="sparkles">✦ ✧ </span>the <span class="accent-text">scary scenarios</span><span class="sparkles"> ✧ ✦</span></h2>
+            <p>Real situations where no insurance = financial nightmare. Every story below happened to a real person.</p>
+        </div>
+
+        <div class="scenarios-grid">
+
+            <!-- 1. Heart Attack -->
+            <div class="scenario-card reveal">
+                <div class="sc-type">🏥 Health Insurance</div>
+                <h3 class="sc-title">Arjun had a heart attack at 34</h3>
+                <p class="sc-story">No symptoms. No warning. Arjun collapsed at his office in Bengaluru. Three stents, 11 days in ICU, endless tests. He survived. His bank account didn't. He had to sell his car and borrow from four relatives just to clear the hospital bill.</p>
+                <div class="sc-cost">
+                    <div class="sc-cost-label">💸 what he paid — no health insurance</div>
+                    <div class="sc-cost-amt">₹4,80,000</div>
+                    <div class="sc-cost-note">Sold his car + borrowed from 4 relatives to cover it</div>
+                </div>
+                <div class="sc-insured">
+                    <div class="sc-insured-label">✦ if he had health insurance</div>
+                    <div class="sc-insured-text">₹500/month premium → ₹0 out of pocket. Full cardiac procedure covered.</div>
+                </div>
+                <span class="sc-tag">Cardiac Emergency</span>
+            </div>
+
+            <!-- 2. Car Accident -->
+            <div class="scenario-card reveal">
+                <div class="sc-type">🚗 Motor Insurance</div>
+                <h3 class="sc-title">Priya's dream car was totalled overnight</h3>
+                <p class="sc-story">She'd bought it last December — her very first car. A drunk driver rammed it at 2 AM while it sat parked outside. Comprehensive insurance? "I'll renew next month," she'd said. That month never came. Third-party cover did nothing for her own damage.</p>
+                <div class="sc-cost">
+                    <div class="sc-cost-label">💸 what she lost — no comprehensive cover</div>
+                    <div class="sc-cost-amt">₹9,20,000</div>
+                    <div class="sc-cost-note">Full car IDV loss. Nothing recovered.</div>
+                </div>
+                <div class="sc-insured">
+                    <div class="sc-insured-label">✦ if she had comprehensive insurance</div>
+                    <div class="sc-insured-text">₹1,200/month → full own-damage claim + IDV settlement paid out.</div>
+                </div>
+                <span class="sc-tag">Own Damage</span>
+            </div>
+
+            <!-- 3. House Fire -->
+            <div class="scenario-card reveal">
+                <div class="sc-type">🏠 Home Insurance</div>
+                <h3 class="sc-title">A short circuit took 12 years of savings</h3>
+                <p class="sc-story">Rohit and his wife had built their home piece by piece over 12 years — EMI by EMI. A faulty wire in the kitchen at 3 AM and it was all gone. The building survived. The contents didn't. No insurance meant no recovery.</p>
+                <div class="sc-cost">
+                    <div class="sc-cost-label">💸 what they lost — no home insurance</div>
+                    <div class="sc-cost-amt">₹14,50,000</div>
+                    <div class="sc-cost-note">Electronics, jewellery, furniture — all gone in a single night</div>
+                </div>
+                <div class="sc-insured">
+                    <div class="sc-insured-label">✦ if they had home insurance</div>
+                    <div class="sc-insured-text">₹800/year → contents covered up to ₹20L. Full replacement arranged.</div>
+                </div>
+                <span class="sc-tag">Fire Damage</span>
+            </div>
+
+            <!-- 4. Cancer -->
+            <div class="scenario-card reveal">
+                <div class="sc-type">🎗️ Critical Illness Cover</div>
+                <h3 class="sc-title">Cancer diagnosis wiped out a family's future</h3>
+                <p class="sc-story">Meera, 38, was the sole earner. Stage 2 breast cancer. Treatment meant 8 months away from work — chemo, surgery, recovery. Her basic health policy covered hospitalisation only. The rest? Her children's education fund. Gone.</p>
+                <div class="sc-cost">
+                    <div class="sc-cost-label">💸 total treatment cost</div>
+                    <div class="sc-cost-amt">₹22,00,000</div>
+                    <div class="sc-cost-note">Basic policy covered ₹3L. She paid ₹19L from savings and loans.</div>
+                </div>
+                <div class="sc-insured">
+                    <div class="sc-insured-label">✦ if she had critical illness cover</div>
+                    <div class="sc-insured-text">Lump-sum payout on diagnosis day. Income replacement. Zero debt.</div>
+                </div>
+                <span class="sc-tag">Critical Illness</span>
+            </div>
+
+            <!-- 5. Travel -->
+            <div class="scenario-card reveal">
+                <div class="sc-type">✈️ Travel Insurance</div>
+                <h3 class="sc-title">One meal in Paris. ₹2.8L gone.</h3>
+                <p class="sc-story">Day 2 of Karan's Europe trip. Severe food poisoning — hospitalisation in Paris. His travel agent said insurance was "optional." European hospitals are not optional with their bills. Missed flights, extended hotel stay. A dream trip turned catastrophe.</p>
+                <div class="sc-cost">
+                    <div class="sc-cost-label">💸 unexpected costs abroad — no travel insurance</div>
+                    <div class="sc-cost-amt">₹2,80,000</div>
+                    <div class="sc-cost-note">Hospital in Paris ₹1.8L + missed flights + extended hotel stay</div>
+                </div>
+                <div class="sc-insured">
+                    <div class="sc-insured-label">✦ if he had travel insurance</div>
+                    <div class="sc-insured-text">₹1,200 one-time policy → full overseas medical + trip interruption covered.</div>
+                </div>
+                <span class="sc-tag">Medical Abroad</span>
+            </div>
+
+            <!-- 6. Term Life -->
+            <div class="scenario-card reveal">
+                <div class="sc-type">💔 Term Life Insurance</div>
+                <h3 class="sc-title">A 32-year-old dad. Two kids. No term plan.</h3>
+                <p class="sc-story">Vikram died in a road accident last March. He'd always meant to get term insurance — "too young to worry," he'd thought. His wife moved back to her parents' home. His kids changed schools. His home loan stayed. Nothing was cleared.</p>
+                <div class="sc-cost">
+                    <div class="sc-cost-label">💸 financial gap left behind</div>
+                    <div class="sc-cost-amt">₹1.2 Cr</div>
+                    <div class="sc-cost-note">20-year income gap. Home loan outstanding. Two kids to raise.</div>
+                </div>
+                <div class="sc-insured">
+                    <div class="sc-insured-label">✦ if he had a ₹1Cr term plan</div>
+                    <div class="sc-insured-text">₹700/month → family receives ₹1Cr. Home loan cleared. Future protected.</div>
+                </div>
+                <span class="sc-tag">Family Protection</span>
+            </div>
+
+            <!-- 7. Flood -->
+            <div class="scenario-card reveal">
+                <div class="sc-type">🌊 Home + Motor Insurance</div>
+                <h3 class="sc-title">Chennai floods. No warning. No cover.</h3>
+                <p class="sc-story">Suresh knew floods were possible — but his locality "never flooded before." Until it did. Four feet of water inside. Car submerged. Ground floor completely destroyed. Government relief was ₹5,000 — a one-time payment. The damage was ₹18 lakhs.</p>
+                <div class="sc-cost">
+                    <div class="sc-cost-label">💸 total flood damage — no insurance</div>
+                    <div class="sc-cost-amt">₹18,00,000</div>
+                    <div class="sc-cost-note">Structural damage + full contents loss + car submerged</div>
+                </div>
+                <div class="sc-insured">
+                    <div class="sc-insured-label">✦ if he had home + motor insurance</div>
+                    <div class="sc-insured-text">Natural disaster clause applies. Both home and car fully covered.</div>
+                </div>
+                <span class="sc-tag">Natural Disaster</span>
+            </div>
+
+            <!-- 8. Disability -->
+            <div class="scenario-card reveal">
+                <div class="sc-type">🦽 Disability Cover</div>
+                <h3 class="sc-title">A scaffold collapse. A lost career.</h3>
+                <p class="sc-story">Ravi was a civil engineer. A scaffolding collapse left him with a permanent spinal injury — unable to work in fieldwork ever again. His employer's compensation lasted 3 months. His home loan EMI of ₹42,000 didn't stop. Credit card debt piled up fast.</p>
+                <div class="sc-cost">
+                    <div class="sc-cost-label">💸 income lost in first 5 years</div>
+                    <div class="sc-cost-amt">₹36,00,000</div>
+                    <div class="sc-cost-note">Zero income. EMIs ongoing. Debt spiral in 6 months.</div>
+                </div>
+                <div class="sc-insured">
+                    <div class="sc-insured-label">✦ if he had disability income cover</div>
+                    <div class="sc-insured-text">Monthly payout up to 80% of last salary until recovery or retirement.</div>
+                </div>
+                <span class="sc-tag">Income Replacement</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ════ STATS ════ -->
+<div class="stats-strip">
+    <div class="stats-inner">
+        <div class="stat-item">
+            <div class="stat-num">1 in 4</div>
+            <div class="stat-lbl">Indians face a medical emergency every year</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+            <div class="stat-num">₹3.2L</div>
+            <div class="stat-lbl">Average out-of-pocket spend per health crisis</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+            <div class="stat-num">68%</div>
+            <div class="stat-lbl">Of Indians have zero life insurance coverage</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+            <div class="stat-num">2 mins</div>
+            <div class="stat-lbl">All it takes to get covered online, right now</div>
+        </div>
+    </div>
+</div>
+
+<!-- ════ HOW IT WORKS ════ -->
+<section id="how-it-works">
+    <div class="section">
+        <div class="section-head">
+            <h2><span class="sparkles">✦ ✧ </span>how it works<span class="sparkles"> ✧ ✦</span></h2>
+        </div>
+
+        <div class="steps-row">
+            <div class="step-card reveal">
+                <div class="step-num">1</div>
+                <div>
+                    <div class="step-ico">📋</div>
+                    <div class="step-title">answer a few questions</div>
+                    <p class="step-desc">I assess your lifestyle, assets, habits &amp; financial risks. Takes about 2 minutes.</p>
+                </div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step-card reveal">
+                <div class="step-num">2</div>
+                <div>
+                    <div class="step-ico">📊</div>
+                    <div class="step-title">see your scary risk score</div>
+                    <p class="step-desc">Get your personalised exposure to each scenario above — real numbers, not guesses.</p>
+                </div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step-card reveal">
+                <div class="step-num">3</div>
+                <div>
+                    <div class="step-ico">🛡️</div>
+                    <div class="step-title">get covered in 2 minutes</div>
+                    <p class="step-desc">Pick a plan that matches your risk. Real IRDAI-registered insurers. Real coverage.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════ SCARY VS SAFE ════ -->
+<section id="insurance">
+    <div class="section" style="padding-top:0;">
+        <div class="two-col">
+            <div class="dark-box reveal">
+                <h3>the scary part<br>nobody tells you</h3>
+                <p>One unexpected event can cost more than 10–15 years of combined insurance premiums. Are you really prepared to take that risk?</p>
+                <div class="cost-chips">
+                    <div class="cost-chip">
+                        <div class="chip-amt">₹4.8L</div>
+                        <div class="chip-lbl">Cardiac Emergency</div>
+                    </div>
+                    <div class="cost-chip">
+                        <div class="chip-amt">₹22L</div>
+                        <div class="chip-lbl">Cancer Treatment</div>
+                    </div>
+                    <div class="cost-chip">
+                        <div class="chip-amt">₹1.2Cr</div>
+                        <div class="chip-lbl">Life Income Gap</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dark-box green-box reveal">
+                <h3>but don't worry,<br>i've got your back 🧚</h3>
+                <p>If these numbers scare you — they should — I'll help you get covered in just 2 minutes. Real plans. Trusted insurers. Prices that won't break you.</p>
+                <button class="btn-large" onclick="window.location.href='quiz.html'">🛡️ GET COVERED NOW →</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════ TESTIMONIALS ════ -->
+<section id="about">
+    <div class="section" style="padding-top:0;">
+        <div class="section-row-header">
+            <h2>real stories,<br>real realisations</h2>
+            <a href="#" class="view-all">View all →</a>
+        </div>
+
+        <div class="testi-grid">
+            <div class="testi-card reveal">
+                <span class="quote-mark">"</span>
+                <p class="testi-text">Scary Fairy made me realise I was one medical emergency away from financial chaos. Got insured the same week. Scary but necessary.</p>
+                <div class="testi-author">— Riya, 24, Mumbai</div>
+                <span class="testi-badge">Health Insurance</span>
+            </div>
+
+            <div class="testi-card highlighted reveal">
+                <span class="quote-mark">"</span>
+                <p class="testi-text">The hospital hit me hard. ₹4.5 lakh bill, sold my bike, borrowed from three people. Now I have insurance. That experience broke something in me — never again.</p>
+                <div class="testi-author">— Karan, 27, Pune</div>
+                <span class="testi-badge">Post-Emergency Wake-up</span>
+            </div>
+
+            <div class="testi-card reveal">
+                <span class="quote-mark">"</span>
+                <p class="testi-text">I thought term insurance was for "old people." Then Nyx showed me what happens to a family without it. Got a ₹1Cr plan that same evening — ₹650 a month.</p>
+                <div class="testi-author">— Ankit, 31, Delhi</div>
+                <span class="testi-badge">Term Insurance</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════ CTA ════ -->
+<div class="cta-section">
+    <h2 class="cta-title">
+        still think you'll be fine<br>
+        <span class="accent-text">without insurance?</span>
+    </h2>
+    <p class="cta-desc">
+        Every single scenario above happened to a real person who thought the exact same thing. It takes 2 minutes to check if you're actually covered — or dangerously exposed.
+    </p>
+    <div class="cta-btns">
+        <button class="btn-large" onclick="window.location.href='quiz.html'">⚡ Check My Risk Now →</button>
+        <button class="btn-outline" onclick="document.getElementById('scenarios').scrollIntoView({behavior:'smooth'})">🛡️ See the Stories</button>
+    </div>
+</div>
+
+<!-- ════ NEWSLETTER ════ -->
+<div class="divider"></div>
+<div class="newsletter">
+    <div class="newsletter-inner">
+        <div>
+            <h3>stay in the dark magic ✦</h3>
+            <p>Get reminders, tips &amp; spooky truths about insurance that nobody else tells you. No spam — just facts that might save you lakhs.</p>
+        </div>
+        <div>
+            <div class="nl-form">
+                <input type="email" class="nl-input" placeholder="your@email.com">
+                <button class="nl-btn">JOIN THE COVEN</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="divider"></div>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+    <div>
+        <div class="footer-logo">✦ Scary Fairy ✦</div>
+        <p class="footer-tagline">because being unprepared isn't just scary — it's expensive.</p>
+        <div class="footer-socials">
+            <a class="social-btn" href="#" title="Instagram">ig</a>
+            <a class="social-btn" href="#" title="X / Twitter">𝕏</a>
+            <a class="social-btn" href="#" title="TikTok">tt</a>
+            <a class="social-btn" href="#" title="YouTube">yt</a>
+        </div>
+    </div>
+
+    <div class="footer-col">
+        <h4>Explore</h4>
+        <ul class="footer-links">
+            <li><a href="#">Scary Scenarios</a></li>
+            <li><a href="#">Risk Checker</a></li>
+            <li><a href="#">Insurance Plans</a></li>
+            <li><a href="#">Real Stories</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h4>Insurance Types</h4>
+        <ul class="footer-links">
+            <li><a href="#">Health Insurance</a></li>
+            <li><a href="#">Term Life</a></li>
+            <li><a href="#">Motor Insurance</a></li>
+            <li><a href="#">Home Insurance</a></li>
+            <li><a href="#">Travel Insurance</a></li>
+            <li><a href="#">Critical Illness</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h4>Company</h4>
+        <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">IRDAI Disclosure</a></li>
+        </ul>
+    </div>
+</footer>
+
+<div class="footer-bottom">
+    <p>© 2025 Scary Fairy. All rights reserved.</p>
+    <div class="footer-btm-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+        <a href="#">IRDAI Disclosure</a>
+    </div>
+</div>
+
+</div><!-- /.wrap -->
+
+<script>
+/* ── Firefly Canvas ── */
+(function () {
+    const canvas = document.getElementById('firefly-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = document.body.scrollHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const COUNT = 70;
+    const flies = Array.from({ length: COUNT }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.8 + 0.8,
+        a: Math.random(),
+        ad: Math.random() > 0.5 ? 1 : -1,
+        as: Math.random() * 0.008 + 0.004,
+        h: Math.random() > 0.55 ? 22 : 280,
+    }));
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        flies.forEach(f => {
+            f.x += f.vx;
+            f.y += f.vy;
+            f.a = Math.max(0, Math.min(1, f.a + f.as * f.ad));
+            if (f.a >= 1 || f.a <= 0) f.ad *= -1;
+            if (f.x < 0) f.x = canvas.width;
+            if (f.x > canvas.width) f.x = 0;
+            if (f.y < 0) f.y = canvas.height;
+            if (f.y > canvas.height) f.y = 0;
+
+            const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 7);
+            g.addColorStop(0, `hsla(${f.h}, 78%, 62%, ${f.a * 0.75})`);
+            g.addColorStop(1, `hsla(${f.h}, 78%, 62%, 0)`);
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.r * 7, 0, Math.PI * 2);
+            ctx.fillStyle = g;
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+            ctx.fillStyle = `hsla(${f.h}, 90%, 72%, ${f.a})`;
+            ctx.fill();
+        });
+        requestAnimationFrame(draw);
+    }
+    draw();
+})();
+
+/* ── Scroll Reveal ── */
+(function () {
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+                // slight stagger for grid siblings
+                const siblings = e.target.closest('.scenarios-grid, .testi-grid, .two-col');
+                let delay = 0;
+                if (siblings) {
+                    const idx = Array.from(siblings.children).indexOf(e.target);
+                    delay = idx * 80;
+                }
+                setTimeout(() => e.target.classList.add('in'), delay);
+                io.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.08 });
+    els.forEach(el => io.observe(el));
+})();
+
+/* ── Smooth scroll for nav ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+});
+
+/* ── Newsletter form ── */
+document.querySelector('.nl-btn').addEventListener('click', () => {
+    const input = document.querySelector('.nl-input');
+    if (input.value && input.value.includes('@')) {
+        input.value = '';
+        input.placeholder = '✦ you\'re in the coven now ✦';
+    }
+});
+</script>
+
+    <script>
+        (function() {
+            const saved = localStorage.getItem('sf-theme');
+            if (saved) document.documentElement.setAttribute('data-theme', saved);
+            const btn = document.getElementById('theme-toggle');
+            if (btn) {
+                btn.textContent = saved === 'light' ? '🌙' : '☀️';
+                btn.addEventListener('click', () => {
+                    const curr = document.documentElement.getAttribute('data-theme');
+                    const next = curr === 'light' ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', next === 'dark' ? '' : next);
+                    localStorage.setItem('sf-theme', next === 'dark' ? '' : next);
+                    btn.textContent = next === 'light' ? '🌙' : '☀️';
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

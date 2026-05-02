@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Check — Scary Fairy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06040d;
+            --bg-card: #0d091a;
+            --bg-card-2: #130e22;
+            --accent: #ff6b2b;
+            --accent-glow: rgba(255, 107, 43, 0.28);
+            --text: #f0e8ff;
+            --text-muted: #8074a8;
+            --red: #ff4d4d;
+            --red-muted: rgba(255, 77, 77, 0.12);
+            --border: #1e1435;
+            --border-accent: rgba(255, 107, 43, 0.28);
+
+            /* tier colors */
+            --tier-comp: #4ade80;
+            --tier-std:  #c8e645;
+            --tier-basic:#f59e0b;
+            --tier-risk: #ef4444;
+        }
+
+        /* ═══ LIGHT MODE ═══ */
+        [data-theme="light"] {
+            --bg: #fdf0e8;
+            --bg-card: #fff9f5;
+            --bg-card-2: #fae8da;
+            --accent-glow: rgba(180, 80, 0, 0.15);
+            --text: #1a0c06;
+            --text-muted: #7a4a30;
+            --red: #c92a2a;
+            --red-muted: rgba(201, 42, 42, 0.07);
+            --border: #e8cdb8;
+            --border-accent: rgba(180, 80, 0, 0.3);
+        }
+        [data-theme="light"] nav                { background: rgba(253, 240, 232, 0.93); border-bottom-color: #e8cdb8; }
+        [data-theme="light"] .progress-bar-wrap { background: rgba(253, 240, 232, 0.96); border-bottom-color: #e8cdb8; }
+
+        /* ── Orange text → dark burnt-orange on light bg ── */
+        [data-theme="light"] .nav-logo         { color: #8b3a00; }
+        [data-theme="light"] .quiz-hero-eye    { color: #8b3a00; }
+        [data-theme="light"] .quiz-hero-title em { color: #8b3a00; text-decoration-color: #8b3a00; }
+        [data-theme="light"] .section-label    { color: #7a4a30; }
+        [data-theme="light"] .slider-val       { color: #8b3a00; }
+        [data-theme="light"] .progress-pct     { color: #8b3a00; }
+        [data-theme="light"] .nyx-name         { color: #8b3a00; }
+        [data-theme="light"] .nyx-card         { border-color: rgba(160,70,0,.25); }
+        [data-theme="light"] .breakdown-title  { color: var(--text); }
+        [data-theme="light"] .cat-panel-title  { color: #7a4a30; }
+        [data-theme="light"] .bd-group-label   { color: #7a4a30; background: rgba(0,0,0,.02); }
+        [data-theme="light"] .bd-row:hover     { background: rgba(0,0,0,.025); }
+        [data-theme="light"] .recs-title       { color: var(--text); }
+
+        /* Tier badges in light mode — darken lime/green tones */
+        [data-theme="light"] .tier-badge.tier-comp { color: #176b3d; border-color: rgba(23,107,61,.3); }
+        [data-theme="light"] .tier-badge.tier-comp .tier-badge-dot { background: #176b3d; }
+        [data-theme="light"] .tier-badge.tier-std  { color: #8b3a00; border-color: rgba(160,70,0,.3); }
+        [data-theme="light"] .tier-badge.tier-std  .tier-badge-dot { background: #8b3a00; }
+
+        /* Toggle active state */
+        [data-theme="light"] .tog.active { background: rgba(160,70,0,.08); border-color: #c85a00; color: #7a2800; }
+
+        /* Check items selected */
+        [data-theme="light"] .check-item.selected { border-color: #c85a00; background: rgba(160,70,0,.07); }
+        [data-theme="light"] .check-item.selected .check-dot { background: #c85a00; }
+
+        /* Range input */
+        [data-theme="light"] input[type="range"] {
+            background: linear-gradient(to right, #c85a00 var(--fill, 20%), #e8cdb8 var(--fill, 20%));
+        }
+        [data-theme="light"] input[type="range"]::-webkit-slider-thumb { background: #c85a00; box-shadow: 0 0 10px rgba(200,90,0,.3); }
+        [data-theme="light"] input[type="range"]::-moz-range-thumb { background: #c85a00; }
+        [data-theme="light"] .progress-fill { background: #c85a00; }
+
+        /* Results panels */
+        [data-theme="light"] .res-score-panel { background: #fff9f5; }
+        [data-theme="light"] .res-cat-panel   { background: #fae8da; }
+        [data-theme="light"] .res-top         { border-color: #e8cdb8; background: #e8cdb8; }
+        [data-theme="light"] .breakdown-card  { border-color: #e8cdb8; }
+        [data-theme="light"] .breakdown-header { border-bottom-color: #e8cdb8; }
+
+        /* ── Smooth theme transition ── */
+        body, nav, .qcard, .nyx-card, .breakdown-card, .rec-card,
+        .res-score-panel, .res-cat-panel, .progress-bar-wrap {
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+        }
+
+        /* ── Theme toggle button ── */
+        .theme-toggle {
+            background: var(--bg-card-2); border: 1px solid var(--border);
+            border-radius: 999px; width: 34px; height: 34px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 1rem; transition: all .2s; flex-shrink: 0;
+        }
+        .theme-toggle:hover { border-color: var(--border-accent); transform: scale(1.08); }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; min-height: 100vh; }
+
+        #firefly-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+        .wrap { position: relative; z-index: 1; }
+
+        /* ── NAV ── */
+        nav {
+            position: sticky; top: 0; z-index: 200;
+            background: rgba(6,4,13,0.92); backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: 'Caveat', cursive; font-size: 1.55rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+        .nav-back { color: var(--text-muted); font-size: 0.85rem; text-decoration: none; transition: color .2s; }
+        .nav-back:hover { color: var(--accent); }
+
+        /* ── STICKY PROGRESS ── */
+        .progress-bar-wrap {
+            position: sticky; top: 60px; z-index: 100;
+            background: rgba(8,10,8,0.92); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border); padding: 0.6rem 2rem;
+        }
+        .progress-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; }
+        .progress-label { font-size: 0.73rem; color: var(--text-muted); white-space: nowrap; }
+        .progress-track { flex: 1; height: 4px; background: var(--border); border-radius: 999px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--accent); border-radius: 999px; width: 0%; transition: width .4s ease; }
+        .progress-pct { font-size: 0.73rem; color: var(--accent); min-width: 32px; text-align: right; }
+
+        /* ── QUIZ SHELL ── */
+        .quiz-shell { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+        /* ── HERO ── */
+        .quiz-hero { text-align: center; padding: 2.5rem 2rem 3rem; }
+        .quiz-hero-eye { font-size: 0.73rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .9rem; }
+        .quiz-hero-title { font-family: 'Caveat', cursive; font-size: clamp(2.4rem,5vw,3.8rem); line-height: 1.1; margin-bottom: .9rem; }
+        .quiz-hero-title em { font-style: normal; color: var(--accent); }
+        .quiz-hero-sub { color: var(--text-muted); font-size: .92rem; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+        /* ── SECTION LABEL ── */
+        .section-label {
+            font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+            color: var(--text-muted); margin: 2.5rem 0 1rem;
+            display: flex; align-items: center; gap: .75rem;
+        }
+        .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+        /* ── QUIZ CARD ── */
+        .qcard {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px;
+            padding: 1.5rem 1.6rem; transition: border-color .25s;
+        }
+        .qcard:focus-within { border-color: var(--border-accent); }
+        .qcard-label { font-size: .83rem; color: var(--text-muted); margin-bottom: 1.1rem; line-height: 1.4; }
+
+        /* ── GRID ROWS ── */
+        .qrow { display: grid; gap: 1rem; margin-bottom: 1rem; }
+        .qrow-2    { grid-template-columns: 1fr 1fr; }
+        .qrow-3bmi { grid-template-columns: 200px 1fr 1fr; }
+        .qrow-full { grid-template-columns: 1fr; }
+
+        /* ── TOGGLE BUTTONS ── */
+        .tog-group { display: flex; gap: .5rem; flex-wrap: wrap; }
+        .tog {
+            flex: 1; min-width: 70px; background: transparent; border: 1px solid var(--border);
+            color: var(--text-muted); padding: .65rem .8rem; border-radius: 10px;
+            cursor: pointer; font-size: .85rem; font-family: 'Inter', sans-serif;
+            transition: all .18s; text-align: center; line-height: 1.3; white-space: nowrap;
+        }
+        .tog:hover { border-color: rgba(255,107,43,.35); color: var(--text); }
+        .tog.active { background: rgba(255,107,43,.09); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+        /* ── SLIDER ── */
+        .slider-row { display: flex; align-items: center; gap: 1rem; }
+        .slider-wrap { flex: 1; }
+        input[type="range"] {
+            -webkit-appearance: none; appearance: none; width: 100%; height: 5px;
+            border-radius: 999px; outline: none; cursor: pointer;
+            background: linear-gradient(to right, var(--accent) var(--fill, 20%), var(--border) var(--fill, 20%));
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%;
+            background: var(--accent); cursor: pointer; box-shadow: 0 0 12px rgba(255,107,43,.5);
+            border: 3px solid var(--bg-card);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 22px; height: 22px; border-radius: 50%; background: var(--accent);
+            cursor: pointer; border: 3px solid var(--bg-card);
+        }
+        .slider-val { font-family: 'Caveat', cursive; font-size: 2rem; color: var(--accent); min-width: 50px; text-align: right; line-height: 1; }
+        .slider-range { display: flex; justify-content: space-between; font-size: .72rem; color: var(--text-muted); margin-top: .4rem; }
+
+        /* ── MULTI-SELECT ── */
+        .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
+        .check-item {
+            display: flex; align-items: center; gap: .75rem; padding: .7rem 1rem;
+            border: 1px solid var(--border); border-radius: 10px; cursor: pointer;
+            font-size: .85rem; color: var(--text-muted); transition: all .18s; user-select: none;
+        }
+        .check-item:hover { border-color: rgba(255,107,43,.3); color: var(--text); }
+        .check-item.selected { border-color: var(--accent); background: rgba(255,107,43,.07); color: var(--text); }
+        .check-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); flex-shrink: 0; transition: background .18s; }
+        .check-item.selected .check-dot { background: var(--accent); }
+
+        /* ── SUBMIT ── */
+        .submit-wrap { margin-top: 2rem; }
+        .btn-calculate {
+            width: 100%; background: var(--accent); color: #080a08; border: none;
+            padding: 1.2rem 2rem; border-radius: 14px; font-weight: 700; font-size: 1.05rem;
+            font-family: 'Inter', sans-serif; cursor: pointer; letter-spacing: .04em;
+            transition: all .25s; display: flex; align-items: center; justify-content: center; gap: .7rem;
+        }
+        .btn-calculate:hover { background: #d4f53c; transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+
+        /* ══════════════════════════════════════
+           RESULTS STYLES
+        ══════════════════════════════════════ */
+        #results { display: none; margin-top: 3rem; }
+        #results.visible { display: block; }
+
+        /* ── Top panel: Score + Categories ── */
+        .res-top {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+            background: var(--border); border: 1px solid var(--border);
+            border-radius: 22px; overflow: hidden; margin-bottom: 1rem;
+        }
+        .res-score-panel {
+            background: var(--bg-card); padding: 2.5rem 2.5rem 2rem;
+            animation: fadeSlideIn .5s ease both;
+        }
+        .res-cat-panel {
+            background: var(--bg-card-2); padding: 2.5rem 2.5rem 2rem;
+            animation: fadeSlideIn .5s ease .1s both;
+        }
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Big score */
+        .big-score-row { display: flex; align-items: flex-end; gap: .3rem; margin-bottom: .9rem; }
+        .big-score-num {
+            font-family: 'Caveat', cursive; font-size: 5rem; line-height: 1;
+            font-weight: 700; transition: color .4s;
+        }
+        .big-score-denom { font-family: 'Caveat', cursive; font-size: 1.8rem; color: var(--text-muted); margin-bottom: .5rem; }
+
+        /* Horizontal score bar */
+        .score-bar-track { height: 12px; background: var(--border); border-radius: 999px; overflow: hidden; margin-bottom: 1.1rem; }
+        .score-bar-fill { height: 100%; border-radius: 999px; width: 0%; transition: width 1.2s cubic-bezier(.4,0,.2,1) .2s; }
+
+        /* Tier label */
+        .tier-label { font-family: 'Caveat', cursive; font-size: 1.55rem; margin-bottom: 1.2rem; transition: color .4s; }
+
+        /* Tier legend */
+        .tier-legend { display: flex; flex-wrap: wrap; gap: .5rem; }
+        .tier-badge {
+            display: flex; align-items: center; gap: .4rem;
+            font-size: .75rem; padding: .3rem .75rem;
+            border-radius: 999px; border: 1px solid; opacity: .5; transition: opacity .3s;
+        }
+        .tier-badge.active-tier { opacity: 1; font-weight: 600; }
+        .tier-badge-dot { width: 7px; height: 7px; border-radius: 50%; }
+        .tier-comp { border-color: rgba(74,222,128,.3); color: var(--tier-comp); }
+        .tier-comp .tier-badge-dot { background: var(--tier-comp); }
+        .tier-std  { border-color: rgba(255,107,43,.3); color: var(--tier-std); }
+        .tier-std  .tier-badge-dot { background: var(--tier-std); }
+        .tier-basic{ border-color: rgba(245,158,11,.3); color: var(--tier-basic); }
+        .tier-basic .tier-badge-dot { background: var(--tier-basic); }
+        .tier-risk { border-color: rgba(239,68,68,.3); color: var(--tier-risk); }
+        .tier-risk  .tier-badge-dot { background: var(--tier-risk); }
+
+        /* Category score panel */
+        .cat-panel-title { font-size: .73rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-bottom: 1.4rem; }
+        .cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem 2rem; }
+        .cat-item {}
+        .cat-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .4rem; }
+        .cat-item-name { font-size: .85rem; color: var(--text-muted); }
+        .cat-item-num { font-family: 'Caveat', cursive; font-size: 1.5rem; line-height: 1; }
+        .cat-bar { height: 7px; background: var(--border); border-radius: 999px; overflow: hidden; }
+        .cat-bar-fill { height: 100%; border-radius: 999px; width: 0%; transition: width 1s ease .4s; }
+
+        /* ── Nyx message card ── */
+        .nyx-card {
+            background: var(--bg-card); border: 1px solid var(--border-accent);
+            border-radius: 18px; padding: 1.4rem 1.6rem; margin-bottom: 1rem;
+            display: flex; gap: 1rem; align-items: flex-start;
+            animation: fadeSlideIn .5s ease .2s both;
+        }
+        .nyx-emoji { font-size: 2rem; flex-shrink: 0; }
+        .nyx-inner {}
+        .nyx-name { font-family: 'Caveat', cursive; color: var(--accent); font-size: 1rem; margin-bottom: .4rem; }
+        .nyx-text { font-size: .88rem; color: var(--text-muted); line-height: 1.7; }
+        .nyx-text strong { color: var(--text); }
+
+        /* ── Full Breakdown ── */
+        .breakdown-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 22px; overflow: hidden; margin-bottom: 1rem;
+            animation: fadeSlideIn .5s ease .3s both;
+        }
+        .breakdown-header { padding: 1.6rem 2rem 1.2rem; border-bottom: 1px solid var(--border); }
+        .breakdown-title { font-family: 'Caveat', cursive; font-size: 1.55rem; }
+        .breakdown-sub { font-size: .78rem; color: var(--text-muted); margin-top: .2rem; }
+
+        /* Group label inside breakdown */
+        .bd-group-label {
+            padding: .6rem 2rem;
+            font-size: .67rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+            color: var(--text-muted); background: rgba(255,255,255,.01);
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Individual row */
+        .bd-row {
+            display: grid; grid-template-columns: 1fr auto auto;
+            align-items: center; gap: 1rem;
+            padding: .75rem 2rem;
+            border-bottom: 1px solid var(--border);
+            transition: background .15s;
+        }
+        .bd-row:last-child { border-bottom: none; }
+        .bd-row:hover { background: rgba(255,255,255,.018); }
+        .bd-param { font-size: .88rem; color: var(--text); }
+        .bd-desc { font-size: .82rem; color: var(--text-muted); text-align: right; }
+        .bd-badge {
+            font-size: .78rem; font-weight: 700; min-width: 38px;
+            padding: .18rem .55rem; border-radius: 999px;
+            text-align: center; font-family: 'Inter', sans-serif;
+        }
+        .bd-badge.pos { background: rgba(74,222,128,.12); color: #4ade80; border: 1px solid rgba(74,222,128,.25); }
+        .bd-badge.neg { background: rgba(239,68,68,.12); color: #f87171; border: 1px solid rgba(239,68,68,.25); }
+        .bd-badge.zero { background: rgba(255,255,255,.04); color: var(--text-muted); border: 1px solid var(--border); }
+
+        /* ── Recommendations ── */
+        .recs-section { animation: fadeSlideIn .5s ease .4s both; }
+        .recs-title { font-family: 'Caveat', cursive; font-size: 1.55rem; margin-bottom: 1.1rem; }
+        .rec-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 18px; padding: 1.4rem;
+            margin-bottom: .9rem; display: grid;
+            grid-template-columns: auto 1fr auto; align-items: start; gap: 1.1rem;
+        }
+        .rec-card.critical { border-color: rgba(239,68,68,.3); background: rgba(239,68,68,.04); }
+        .rec-card.high     { border-color: rgba(245,158,11,.3); background: rgba(245,158,11,.03); }
+        .rec-card.recommended { border-color: var(--border-accent); background: rgba(255,107,43,.03); }
+        .rec-icon { font-size: 1.8rem; }
+        .rec-urg {
+            font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+            padding: .18rem .5rem; border-radius: 999px; display: inline-block; margin-bottom: .4rem;
+        }
+        .rec-urg.critical { background: rgba(239,68,68,.15); color: #f87171; border: 1px solid rgba(239,68,68,.3); }
+        .rec-urg.high     { background: rgba(245,158,11,.15); color: #fbbf24; border: 1px solid rgba(245,158,11,.3); }
+        .rec-urg.recommended { background: rgba(255,107,43,.1); color: var(--accent); border: 1px solid var(--border-accent); }
+        .rec-type { font-family: 'Caveat', cursive; font-size: 1.3rem; margin-bottom: .3rem; }
+        .rec-reason { font-size: .82rem; color: var(--text-muted); line-height: 1.6; margin-bottom: .55rem; }
+        .rec-meta { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+        .rec-meta-item { font-size: .76rem; color: var(--text-muted); }
+        .rec-meta-item strong { color: var(--text); }
+        .rec-cta {
+            align-self: center; background: var(--accent); color: #080a08;
+            border: none; padding: .6rem 1.2rem; border-radius: 9px;
+            font-weight: 700; font-size: .78rem; cursor: pointer;
+            font-family: 'Inter', sans-serif; transition: all .2s; white-space: nowrap;
+        }
+        .rec-cta:hover { background: #d4f53c; transform: translateY(-1px); }
+
+        /* ── Retake ── */
+        .retake-wrap { text-align: center; padding: 2rem 0 1rem; }
+        .btn-retake {
+            background: transparent; color: var(--text-muted); border: 1px solid var(--border);
+            padding: .7rem 1.8rem; border-radius: 999px; cursor: pointer;
+            font-size: .85rem; font-family: 'Inter', sans-serif; transition: all .2s;
+        }
+        .btn-retake:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ── Responsive ── */
+        @media (max-width: 760px) {
+            .qrow-2 { grid-template-columns: 1fr; }
+            .qrow-3bmi { grid-template-columns: 1fr; }
+            .check-grid { grid-template-columns: 1fr; }
+            .res-top { grid-template-columns: 1fr; }
+            .cat-grid { grid-template-columns: 1fr; }
+            .rec-card { grid-template-columns: auto 1fr; }
+            .rec-cta { grid-column: 1 / -1; width: 100%; }
+            .quiz-shell { padding: 2rem 1rem 4rem; }
+            .bd-row { grid-template-columns: 1fr auto; }
+            .bd-desc { display: none; }
+            .res-score-panel, .res-cat-panel { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="firefly-canvas"></canvas>
+<div class="wrap">
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:0.45rem;text-decoration:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 46" width="36" height="32" aria-hidden="true" style="flex-shrink:0;overflow:visible;" overflow="visible">
+              <path d="M25,26 C19,16 5,13 7,23 C9,30 19,28 25,26Z" fill="#ff6b2b" opacity="0.88"/>
+              <path d="M25,26 C31,16 45,13 43,23 C41,30 31,28 25,26Z" fill="#ff6b2b" opacity="0.88"/>
+              <path d="M25,29 C19,23 10,27 9,36 C8,42 18,43 23,36Z" fill="#e05220" opacity="0.65"/>
+              <path d="M25,29 C31,23 40,27 41,36 C42,42 32,43 27,36Z" fill="#e05220" opacity="0.65"/>
+              <ellipse cx="25" cy="21" rx="14" ry="15" fill="#f5c5a3"/>
+              <path d="M12,19 Q12,10 16,6 Q21,1 25,0 Q29,1 34,6 Q38,10 38,19" fill="#2a1835"/>
+              <path d="M12,18 Q14,11 18,9 Q22,6 24,11 Q20,13 19,17Z" fill="#2a1835"/>
+              <path d="M38,18 Q36,11 32,9 Q28,6 26,11 Q30,13 31,17Z" fill="#2a1835"/>
+              <!-- Witch hat -->
+              <path d="M11,7 Q25,-14 39,7Z" fill="#0e0820"/>
+              <ellipse cx="25" cy="7" rx="14" ry="2.5" fill="#0d0820"/>
+              <rect x="13" y="5" width="24" height="3.5" rx="1" fill="#ff6b2b"/>
+              <circle cx="25" cy="-13" r="1.3" fill="#ffd700" opacity="0.9"/>
+              <ellipse cx="19" cy="20" rx="5" ry="5.5" fill="white"/>
+              <ellipse cx="31" cy="20" rx="5" ry="5.5" fill="white"/>
+              <ellipse cx="19" cy="21" rx="3.5" ry="4" fill="#5c3587"/>
+              <ellipse cx="31" cy="21" rx="3.5" ry="4" fill="#5c3587"/>
+              <ellipse cx="19" cy="21" rx="2" ry="2.5" fill="#100818"/>
+              <ellipse cx="31" cy="21" rx="2" ry="2.5" fill="#100818"/>
+              <circle cx="21" cy="18" r="1.6" fill="white"/>
+              <circle cx="33" cy="18" r="1.6" fill="white"/>
+              <ellipse cx="12" cy="27" rx="5" ry="3" fill="#ff8fab" opacity="0.3"/>
+              <ellipse cx="38" cy="27" rx="5" ry="3" fill="#ff8fab" opacity="0.3"/>
+              <path d="M19,30 Q25,36 31,30" fill="none" stroke="#d4956a" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="19" cy="21" r="5.5" fill="none" stroke="#ff6b2b" stroke-width="0.9" opacity="0.88"/>
+              <circle cx="31" cy="21" r="5.5" fill="none" stroke="#ff6b2b" stroke-width="0.9" opacity="0.88"/>
+              <path d="M24.5,21 L25.5,21" stroke="#ff6b2b" stroke-width="0.9" opacity="0.88"/>
+            </svg>
+            Scary Fairy
+        </a>
+        <a href="index.html" class="nav-back">← back to stories</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀️</button>
+    </div>
+</nav>
+
+<!-- PROGRESS -->
+<div class="progress-bar-wrap">
+    <div class="progress-inner">
+        <span class="progress-label">your risk profile</span>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+        <span class="progress-pct" id="progress-pct">0%</span>
+    </div>
+</div>
+
+<!-- QUIZ SHELL -->
+<div class="quiz-shell">
+
+    <div class="quiz-hero">
+        <div class="quiz-hero-eye">✦ 2 minutes · free · no signup ✦</div>
+        <h1 class="quiz-hero-title">let's find out how<br><em>scary</em> your risk really is</h1>
+        <p class="quiz-hero-sub">Answer honestly — every question affects your score. I'll show you a full line-by-line breakdown and exactly what coverage you need.</p>
+    </div>
+
+    <form id="quiz-form" onsubmit="return false;">
+
+        <!-- ══ CLINICAL ══ -->
+        <div class="section-label">biological</div>
+
+        <div class="qrow qrow-2">
+            <div class="qcard">
+                <div class="qcard-label">Age</div>
+                <div class="slider-row">
+                    <div class="slider-wrap">
+                        <input type="range" id="age" min="18" max="80" value="30" data-field="age" style="--fill:19%">
+                        <div class="slider-range"><span>18</span><span>80</span></div>
+                    </div>
+                    <div class="slider-val" id="age-val">30</div>
+                </div>
+            </div>
+            <div class="qcard">
+                <div class="qcard-label">Gender</div>
+                <div class="tog-group" data-field="gender">
+                    <button type="button" class="tog active" data-val="male">Male</button>
+                    <button type="button" class="tog" data-val="female">Female</button>
+                    <button type="button" class="tog" data-val="other">Other</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="qrow qrow-3bmi">
+            <div class="qcard">
+                <div class="qcard-label">BMI</div>
+                <div class="slider-row">
+                    <div class="slider-wrap">
+                        <input type="range" id="bmi" min="15" max="45" value="23" data-field="bmi" style="--fill:27%">
+                        <div class="slider-range"><span>15</span><span>45</span></div>
+                    </div>
+                    <div class="slider-val" id="bmi-val">23</div>
+                </div>
+            </div>
+            <div class="qcard">
+                <div class="qcard-label">Blood pressure</div>
+                <div class="tog-group" data-field="bp">
+                    <button type="button" class="tog active" data-val="normal">Normal</button>
+                    <button type="button" class="tog" data-val="elevated">Elevated</button>
+                    <button type="button" class="tog" data-val="high">High</button>
+                </div>
+            </div>
+            <div class="qcard">
+                <div class="qcard-label">Blood glucose / HbA1c</div>
+                <div class="tog-group" data-field="glucose">
+                    <button type="button" class="tog active" data-val="normal">Normal</button>
+                    <button type="button" class="tog" data-val="prediabetic">Pre-diabetic</button>
+                    <button type="button" class="tog" data-val="diabetic">Diabetic</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="qrow qrow-full">
+            <div class="qcard">
+                <div class="qcard-label">Cholesterol (LDL/HDL ratio)</div>
+                <div class="tog-group" data-field="cholesterol">
+                    <button type="button" class="tog active" data-val="optimal">Optimal (&lt;3.0)</button>
+                    <button type="button" class="tog" data-val="borderline">Borderline (3–4)</button>
+                    <button type="button" class="tog" data-val="high">High (4–5)</button>
+                    <button type="button" class="tog" data-val="veryhigh">Very high (&gt;5)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ BEHAVIOURAL ══ -->
+        <div class="section-label">behavioural</div>
+
+        <div class="qrow qrow-2">
+            <div class="qcard">
+                <div class="qcard-label">Smoking status</div>
+                <div class="tog-group" data-field="smoking">
+                    <button type="button" class="tog active" data-val="never">Never</button>
+                    <button type="button" class="tog" data-val="former">Former</button>
+                    <button type="button" class="tog" data-val="current">Current</button>
+                </div>
+            </div>
+            <div class="qcard">
+                <div class="qcard-label">Alcohol consumption</div>
+                <div class="tog-group" data-field="alcohol">
+                    <button type="button" class="tog active" data-val="none">None</button>
+                    <button type="button" class="tog" data-val="moderate">Moderate</button>
+                    <button type="button" class="tog" data-val="heavy">Heavy</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="qrow qrow-2">
+            <div class="qcard">
+                <div class="qcard-label">Physical activity level</div>
+                <div class="tog-group" data-field="activity">
+                    <button type="button" class="tog" data-val="active">Active</button>
+                    <button type="button" class="tog active" data-val="moderate">Moderate</button>
+                    <button type="button" class="tog" data-val="sedentary">Sedentary</button>
+                </div>
+            </div>
+            <div class="qcard">
+                <div class="qcard-label">Diet quality</div>
+                <div class="tog-group" data-field="diet">
+                    <button type="button" class="tog" data-val="good">Good</button>
+                    <button type="button" class="tog active" data-val="average">Average</button>
+                    <button type="button" class="tog" data-val="poor">Poor</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="qrow qrow-2">
+            <div class="qcard">
+                <div class="qcard-label">Sleep quality</div>
+                <div class="tog-group" data-field="sleep">
+                    <button type="button" class="tog active" data-val="good">Good (7–9h)</button>
+                    <button type="button" class="tog" data-val="fair">Fair (6–7h)</button>
+                    <button type="button" class="tog" data-val="poor">Poor (&lt;6h)</button>
+                </div>
+            </div>
+            <div class="qcard">
+                <div class="qcard-label">Substance use (non-alcohol)</div>
+                <div class="tog-group" data-field="substance">
+                    <button type="button" class="tog active" data-val="none">None</button>
+                    <button type="button" class="tog" data-val="occasional">Occasional</button>
+                    <button type="button" class="tog" data-val="regular">Regular</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ PSYCHOLOGICAL / SOCIAL ══ -->
+        <div class="section-label">psychological &amp; social</div>
+
+        <div class="qrow qrow-2">
+            <div class="qcard">
+                <div class="qcard-label">Mental health status</div>
+                <div class="tog-group" data-field="mental">
+                    <button type="button" class="tog active" data-val="good">Good</button>
+                    <button type="button" class="tog" data-val="mild">Mild issues</button>
+                    <button type="button" class="tog" data-val="significant">Significant</button>
+                </div>
+            </div>
+            <div class="qcard">
+                <div class="qcard-label">Chronic stress level</div>
+                <div class="tog-group" data-field="stress">
+                    <button type="button" class="tog active" data-val="low">Low</button>
+                    <button type="button" class="tog" data-val="moderate">Moderate</button>
+                    <button type="button" class="tog" data-val="high">High</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="qrow qrow-2">
+            <div class="qcard">
+                <div class="qcard-label">Socioeconomic status</div>
+                <div class="tog-group" data-field="socio">
+                    <button type="button" class="tog" data-val="high">High</button>
+                    <button type="button" class="tog active" data-val="middle">Middle</button>
+                    <button type="button" class="tog" data-val="low">Low</button>
+                </div>
+            </div>
+            <div class="qcard">
+                <div class="qcard-label">Social connectedness</div>
+                <div class="tog-group" data-field="social">
+                    <button type="button" class="tog" data-val="strong">Strong</button>
+                    <button type="button" class="tog active" data-val="moderate">Moderate</button>
+                    <button type="button" class="tog" data-val="isolated">Isolated</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ ENVIRONMENTAL / HISTORICAL ══ -->
+        <div class="section-label">environmental &amp; historical</div>
+
+        <div class="qrow qrow-2">
+            <div class="qcard">
+                <div class="qcard-label">Air quality / environmental exposure</div>
+                <div class="tog-group" data-field="air">
+                    <button type="button" class="tog active" data-val="good">Good</button>
+                    <button type="button" class="tog" data-val="moderate">Moderate</button>
+                    <button type="button" class="tog" data-val="poor">Poor / Industrial</button>
+                </div>
+            </div>
+            <div class="qcard">
+                <div class="qcard-label">Vaccination &amp; preventive care</div>
+                <div class="tog-group" data-field="vaccination">
+                    <button type="button" class="tog active" data-val="uptodate">Up to date</button>
+                    <button type="button" class="tog" data-val="partial">Partial</button>
+                    <button type="button" class="tog" data-val="none">None</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="qrow qrow-full">
+            <div class="qcard">
+                <div class="qcard-label">Genetic / family history — select all that apply</div>
+                <div class="check-grid">
+                    <div class="check-item" data-field="family" data-val="heartdisease"><span class="check-dot"></span>Heart disease</div>
+                    <div class="check-item" data-field="family" data-val="cancer"><span class="check-dot"></span>Cancer</div>
+                    <div class="check-item" data-field="family" data-val="diabetes"><span class="check-dot"></span>Diabetes</div>
+                    <div class="check-item" data-field="family" data-val="stroke"><span class="check-dot"></span>Stroke</div>
+                    <div class="check-item" data-field="family" data-val="hypertension"><span class="check-dot"></span>Hypertension</div>
+                    <div class="check-item" data-field="family" data-val="kidney"><span class="check-dot"></span>Kidney disease</div>
+                    <div class="check-item" data-field="family" data-val="mentalhealth"><span class="check-dot"></span>Mental health conditions</div>
+                    <div class="check-item" data-field="family" data-val="respiratory"><span class="check-dot"></span>Respiratory disease</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="qrow qrow-full">
+            <div class="qcard">
+                <div class="qcard-label">Prior surgeries / major procedures — select all that apply</div>
+                <div class="check-grid">
+                    <div class="check-item" data-field="surgeries" data-val="cardiac"><span class="check-dot"></span>Cardiac surgery</div>
+                    <div class="check-item" data-field="surgeries" data-val="ortho"><span class="check-dot"></span>Orthopaedic surgery</div>
+                    <div class="check-item" data-field="surgeries" data-val="neuro"><span class="check-dot"></span>Neurological surgery</div>
+                    <div class="check-item" data-field="surgeries" data-val="oncology"><span class="check-dot"></span>Oncology treatment</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-wrap">
+            <div class="qcard" style="text-align:center; padding:2rem;">
+                <button type="button" class="btn-calculate" onclick="calculateAndShow()">
+                    <span>🔮</span> Calculate insurance score
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+    <!-- ════ RESULTS ════ -->
+    <div id="results">
+
+        <!-- Score + Category panel -->
+        <div class="res-top">
+            <!-- Left: big score -->
+            <div class="res-score-panel">
+                <div class="big-score-row">
+                    <span class="big-score-num" id="big-score-num">—</span>
+                    <span class="big-score-denom">/ 100</span>
+                </div>
+                <div class="score-bar-track">
+                    <div class="score-bar-fill" id="score-bar-fill"></div>
+                </div>
+                <div class="tier-label" id="tier-label">—</div>
+                <div class="tier-legend">
+                    <span class="tier-badge tier-comp"  id="tb-comp"><span class="tier-badge-dot"></span>75–100 Comprehensive</span>
+                    <span class="tier-badge tier-std"   id="tb-std"><span class="tier-badge-dot"></span>55–74 Standard plus</span>
+                    <span class="tier-badge tier-basic" id="tb-basic"><span class="tier-badge-dot"></span>35–54 Basic</span>
+                    <span class="tier-badge tier-risk"  id="tb-risk"><span class="tier-badge-dot"></span>0–34 High risk</span>
+                </div>
+            </div>
+            <!-- Right: category scores -->
+            <div class="res-cat-panel">
+                <div class="cat-panel-title">Score by category</div>
+                <div class="cat-grid">
+                    <div class="cat-item">
+                        <div class="cat-item-header">
+                            <span class="cat-item-name">Biological</span>
+                            <span class="cat-item-num" id="cat-bio-num" style="color:#3b82f6">—</span>
+                        </div>
+                        <div class="cat-bar"><div class="cat-bar-fill" id="cat-bio-fill" style="background:#3b82f6"></div></div>
+                    </div>
+                    <div class="cat-item">
+                        <div class="cat-item-header">
+                            <span class="cat-item-name">Behavioural</span>
+                            <span class="cat-item-num" id="cat-beh-num" style="color:#22c55e">—</span>
+                        </div>
+                        <div class="cat-bar"><div class="cat-bar-fill" id="cat-beh-fill" style="background:#22c55e"></div></div>
+                    </div>
+                    <div class="cat-item">
+                        <div class="cat-item-header">
+                            <span class="cat-item-name">Psychological / social</span>
+                            <span class="cat-item-num" id="cat-psy-num" style="color:#d97706">—</span>
+                        </div>
+                        <div class="cat-bar"><div class="cat-bar-fill" id="cat-psy-fill" style="background:#d97706"></div></div>
+                    </div>
+                    <div class="cat-item">
+                        <div class="cat-item-header">
+                            <span class="cat-item-name">Environmental / historical</span>
+                            <span class="cat-item-num" id="cat-env-num" style="color:#dc2626">—</span>
+                        </div>
+                        <div class="cat-bar"><div class="cat-bar-fill" id="cat-env-fill" style="background:#dc2626"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nyx message -->
+        <div class="nyx-card">
+            <div class="nyx-emoji">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 56" width="48" height="44" aria-label="Nyx" overflow="visible" style="overflow:visible">
+                <!-- Mini wings -->
+                <path d="M30,33 C24,22 8,19 10,29 C12,36 22,35 30,33Z" fill="#ff6b2b" opacity="0.85"/>
+                <path d="M30,33 C36,22 52,19 50,29 C48,36 38,35 30,33Z" fill="#ff6b2b" opacity="0.85"/>
+                <path d="M30,36 C24,31 14,36 13,44 C12,50 21,51 28,44 C29,41 30,38 30,36Z" fill="#e05220" opacity="0.68"/>
+                <path d="M30,36 C36,31 46,36 47,44 C48,50 39,51 32,44 C31,41 30,38 30,36Z" fill="#e05220" opacity="0.68"/>
+                <!-- Head -->
+                <ellipse cx="30" cy="23" rx="16" ry="17" fill="#f5c5a3"/>
+                <!-- Hair back -->
+                <path d="M15,21 Q14,11 18,7 Q24,1 30,0 Q36,1 42,7 Q46,11 45,21" fill="#2a1835"/>
+                <!-- Hair bangs -->
+                <path d="M15,20 Q17,13 21,11 Q26,8 28,13 Q24,15 22,18Z" fill="#2a1835"/>
+                <path d="M45,20 Q43,13 39,11 Q34,8 32,13 Q36,15 38,18Z" fill="#2a1835"/>
+                <!-- Witch hat -->
+                <path d="M13,8 Q30,-16 47,8Z" fill="#0e0820"/>
+                <ellipse cx="30" cy="8" rx="17" ry="3" fill="#0d0820"/>
+                <rect x="15" y="6" width="30" height="4" rx="1.2" fill="#ff6b2b"/>
+                <circle cx="30" cy="-15" r="1.6" fill="#ffd700" opacity="0.9"/>
+                <!-- Eyes whites -->
+                <ellipse cx="23" cy="21" rx="5.5" ry="6" fill="white"/>
+                <ellipse cx="37" cy="21" rx="5.5" ry="6" fill="white"/>
+                <!-- Iris -->
+                <ellipse cx="23" cy="22" rx="4" ry="4.5" fill="#5c3587"/>
+                <ellipse cx="37" cy="22" rx="4" ry="4.5" fill="#5c3587"/>
+                <!-- Pupils -->
+                <ellipse cx="23" cy="22" rx="2.2" ry="2.8" fill="#100818"/>
+                <ellipse cx="37" cy="22" rx="2.2" ry="2.8" fill="#100818"/>
+                <!-- Eye highlights -->
+                <circle cx="25" cy="19" r="1.7" fill="white"/>
+                <circle cx="39" cy="19" r="1.7" fill="white"/>
+                <circle cx="23" cy="22" r="0.9" fill="white" opacity="0.7"/>
+                <circle cx="37" cy="22" r="0.9" fill="white" opacity="0.7"/>
+                <!-- Eyebrows -->
+                <path d="M17,16 Q23,12 29,14" fill="none" stroke="#2a1835" stroke-width="1.4" stroke-linecap="round"/>
+                <path d="M31,14 Q37,12 43,16" fill="none" stroke="#2a1835" stroke-width="1.4" stroke-linecap="round"/>
+                <!-- Cheeks -->
+                <ellipse cx="17" cy="27" rx="5.5" ry="3.5" fill="#ff8fab" opacity="0.3"/>
+                <ellipse cx="43" cy="27" rx="5.5" ry="3.5" fill="#ff8fab" opacity="0.3"/>
+                <!-- Smile -->
+                <path d="M23,32 Q30,38 37,32" fill="none" stroke="#d4956a" stroke-width="1.6" stroke-linecap="round"/>
+                <!-- Glasses -->
+                <circle cx="23" cy="22" r="6" fill="none" stroke="#ff6b2b" stroke-width="0.9" opacity="0.88"/>
+                <circle cx="37" cy="22" r="6" fill="none" stroke="#ff6b2b" stroke-width="0.9" opacity="0.88"/>
+                <path d="M29,22 L31,22" stroke="#ff6b2b" stroke-width="0.9" opacity="0.88"/>
+              </svg>
+            </div>
+            <div class="nyx-inner">
+                <div class="nyx-name">✦ Nyx says</div>
+                <div class="nyx-text" id="nyx-msg">calculating...</div>
+            </div>
+        </div>
+
+        <!-- Full breakdown -->
+        <div class="breakdown-card">
+            <div class="breakdown-header">
+                <div class="breakdown-title">Full breakdown</div>
+                <div class="breakdown-sub">All 20 parameters · positive factors boost your score, risk factors reduce it</div>
+            </div>
+            <div id="breakdown-list"></div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="recs-section">
+            <div class="recs-title">🛡️ what you need — right now</div>
+            <div id="recs-list"></div>
+        </div>
+
+        <div class="retake-wrap">
+            <button class="btn-retake" onclick="resetForm()">↩ retake the quiz</button>
+        </div>
+
+    </div><!-- /#results -->
+
+</div><!-- /.quiz-shell -->
+</div><!-- /.wrap -->
+
+<script>
+/* ─── Firefly canvas ─── */
+(function(){
+    const cv = document.getElementById('firefly-canvas');
+    const cx = cv.getContext('2d');
+    function resize(){ cv.width = window.innerWidth; cv.height = document.body.scrollHeight; }
+    resize(); window.addEventListener('resize', resize);
+    const F = Array.from({length:50},()=>({
+        x:Math.random()*cv.width, y:Math.random()*cv.height,
+        vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3,
+        r:Math.random()*1.6+.6, a:Math.random(), ad:Math.random()>.5?1:-1,
+        as:Math.random()*.007+.003, h:Math.random()>.55?22:280
+    }));
+    function draw(){
+        cx.clearRect(0,0,cv.width,cv.height);
+        F.forEach(f=>{
+            f.x+=f.vx; f.y+=f.vy;
+            f.a=Math.max(0,Math.min(1,f.a+f.as*f.ad));
+            if(f.a>=1||f.a<=0) f.ad*=-1;
+            if(f.x<0) f.x=cv.width; if(f.x>cv.width) f.x=0;
+            if(f.y<0) f.y=cv.height; if(f.y>cv.height) f.y=0;
+            const g=cx.createRadialGradient(f.x,f.y,0,f.x,f.y,f.r*7);
+            g.addColorStop(0,`hsla(${f.h},78%,62%,${f.a*.7})`);
+            g.addColorStop(1,`hsla(${f.h},78%,62%,0)`);
+            cx.beginPath(); cx.arc(f.x,f.y,f.r*7,0,Math.PI*2); cx.fillStyle=g; cx.fill();
+            cx.beginPath(); cx.arc(f.x,f.y,f.r,0,Math.PI*2);
+            cx.fillStyle=`hsla(${f.h},90%,72%,${f.a})`; cx.fill();
+        });
+        requestAnimationFrame(draw);
+    }
+    draw();
+})();
+
+/* ─── State ─── */
+const answers = {
+    age:30, gender:'male', bmi:23, bp:'normal', glucose:'normal', cholesterol:'optimal',
+    smoking:'never', alcohol:'none', activity:'moderate', diet:'average', sleep:'good', substance:'none',
+    mental:'good', stress:'low', socio:'middle', social:'moderate',
+    air:'good', vaccination:'uptodate', family:[], surgeries:[]
+};
+
+/* ─── Sliders ─── */
+document.querySelectorAll('input[type="range"]').forEach(s => {
+    const field = s.dataset.field;
+    const valEl = document.getElementById(field + '-val');
+    function update(){
+        const pct = ((+s.value - +s.min) / (+s.max - +s.min)) * 100;
+        s.style.setProperty('--fill', pct + '%');
+        if(valEl) valEl.textContent = s.value;
+        answers[field] = +s.value;
+        updateProgress();
+    }
+    s.addEventListener('input', update); update();
+});
+
+/* ─── Toggles ─── */
+document.querySelectorAll('.tog-group').forEach(g => {
+    const field = g.dataset.field;
+    g.querySelectorAll('.tog').forEach(btn => {
+        btn.addEventListener('click', () => {
+            g.querySelectorAll('.tog').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            answers[field] = btn.dataset.val;
+            updateProgress();
+        });
+    });
+});
+
+/* ─── Checkboxes ─── */
+document.querySelectorAll('.check-item').forEach(item => {
+    const field = item.dataset.field, val = item.dataset.val;
+    item.addEventListener('click', () => {
+        item.classList.toggle('selected');
+        if(item.classList.contains('selected')){ if(!answers[field].includes(val)) answers[field].push(val); }
+        else { answers[field] = answers[field].filter(v => v !== val); }
+        updateProgress();
+    });
+});
+
+function updateProgress(){
+    const bonus = (answers.family.length + answers.surgeries.length) * 1.5;
+    const v = Math.min(98, 50 + bonus);
+    document.getElementById('progress-fill').style.width = v + '%';
+    document.getElementById('progress-pct').textContent = Math.round(v) + '%';
+}
+updateProgress();
+
+/* ══════════════════════════════════════════════════════
+   SCORING ENGINE
+   Score = 100 + sum of all adjustments, clamped [0,100]
+   Higher score = healthier / more insurable
+   ══════════════════════════════════════════════════════ */
+
+/* Per-factor definitions: { value, label, adj } */
+function getFactors(a) {
+    const ageVal = a.age;
+    const bmiVal = a.bmi;
+
+    // ── BIOLOGICAL ──
+    function ageAdj(v){
+        if(v<=25) return { label:'Young — minimal age risk',          adj:0  };
+        if(v<=35) return { label:'Moderate age factor',               adj:-8 };
+        if(v<=45) return { label:'Elevated age risk',                 adj:-14};
+        if(v<=55) return { label:'High age factor',                   adj:-18};
+        if(v<=65) return { label:'Significant age risk',              adj:-22};
+                  return { label:'Advanced age — high risk',          adj:-26};
+    }
+    const ageFactor = ageAdj(ageVal);
+
+    function genderAdj(v){
+        if(v==='male')   return { label:'Slightly higher baseline',   adj:-2 };
+        if(v==='female') return { label:'Baseline risk',              adj:0  };
+                         return { label:'Baseline risk',              adj:0  };
+    }
+
+    function bmiAdj(v){
+        if(v<18.5)  return { label:'Underweight range',               adj:-5 };
+        if(v<25)    return { label:'Healthy range',                    adj:0  };
+        if(v<30)    return { label:'Overweight — moderate risk',       adj:-5 };
+        if(v<35)    return { label:'Obese class I — high risk',        adj:-10};
+                    return { label:'Obese class II — very high risk',  adj:-15};
+    }
+
+    const bpMap = {
+        normal:   { label:'Optimal',                                   adj:0  },
+        elevated: { label:'Elevated — monitor closely',                adj:-8 },
+        high:     { label:'High — significant risk',                   adj:-15},
+    };
+    const glucoseMap = {
+        normal:      { label:'Normal range',                           adj:0  },
+        prediabetic: { label:'Pre-diabetic — elevated risk',           adj:-8 },
+        diabetic:    { label:'Diabetic — high risk',                   adj:-16},
+    };
+    const cholMap = {
+        optimal:    { label:'Optimal ratio',                           adj:0  },
+        borderline: { label:'Borderline — monitor closely',            adj:-5 },
+        high:       { label:'High — elevated cardiovascular risk',     adj:-10},
+        veryhigh:   { label:'Very high — significant risk',            adj:-14},
+    };
+
+    // ── BEHAVIOURAL ──
+    const smokingMap = {
+        never:   { label:'No smoking risk',                            adj:0  },
+        former:  { label:'Former smoker — residual risk',              adj:-6 },
+        current: { label:'Current smoker — high risk',                 adj:-15},
+    };
+    const alcoholMap = {
+        none:     { label:'No alcohol risk',                           adj:0  },
+        moderate: { label:'Moderate consumption — some risk',          adj:-4 },
+        heavy:    { label:'Heavy drinking — significant risk',         adj:-10},
+    };
+    const activityMap = {
+        active:   { label:'Active lifestyle — positive factor',        adj:+3 },
+        moderate: { label:'Moderate activity',                         adj:0  },
+        sedentary:{ label:'Sedentary lifestyle — risk factor',         adj:-8 },
+    };
+    const dietMap = {
+        good:    { label:'Good nutrition — positive factor',           adj:+2 },
+        average: { label:'Average diet',                               adj:0  },
+        poor:    { label:'Poor nutrition — risk factor',               adj:-6 },
+    };
+    const sleepMap = {
+        good: { label:'Optimal sleep duration',                        adj:+1 },
+        fair: { label:'Adequate sleep',                                adj:0  },
+        poor: { label:'Poor sleep — risk factor',                      adj:-5 },
+    };
+    const substanceMap = {
+        none:       { label:'No substance risk',                       adj:0  },
+        occasional: { label:'Occasional use — some risk',              adj:-4 },
+        regular:    { label:'Regular use — significant risk',          adj:-10},
+    };
+
+    // ── PSYCHOLOGICAL / SOCIAL ──
+    const mentalMap = {
+        good:        { label:'No mental health concerns',              adj:0  },
+        mild:        { label:'Mild concerns — some impact',            adj:-5 },
+        significant: { label:'Significant — high impact',             adj:-12},
+    };
+    const stressMap = {
+        low:      { label:'Low stress',                                adj:0  },
+        moderate: { label:'Moderate stress — some impact',            adj:-4 },
+        high:     { label:'High stress — significant impact',         adj:-8 },
+    };
+    const socioMap = {
+        high:   { label:'Higher healthcare access',                    adj:+3 },
+        middle: { label:'Moderate healthcare access',                  adj:0  },
+        low:    { label:'Limited healthcare access',                   adj:-7 },
+    };
+    const socialMap = {
+        strong:   { label:'Strong social network — protective',        adj:+2 },
+        moderate: { label:'Moderate social connections',               adj:0  },
+        isolated: { label:'Isolated — risk factor',                    adj:-5 },
+    };
+
+    // ── ENVIRONMENTAL / HISTORICAL ──
+    const airMap = {
+        good:     { label:'Clean environment',                         adj:0  },
+        moderate: { label:'Moderate environmental exposure',           adj:-3 },
+        poor:     { label:'High exposure — risk factor',               adj:-7 },
+    };
+    const vaccMap = {
+        uptodate: { label:'Up to date — positive factor',              adj:+2 },
+        partial:  { label:'Partial coverage',                          adj:-2 },
+        none:     { label:'No preventive care — risk factor',          adj:-6 },
+    };
+
+    // Family history per-condition
+    const familyDefs = {
+        heartdisease: { name:'Heart disease',            adj:-3 },
+        cancer:       { name:'Cancer',                   adj:-3 },
+        diabetes:     { name:'Diabetes',                 adj:-2 },
+        stroke:       { name:'Stroke',                   adj:-3 },
+        hypertension: { name:'Hypertension',             adj:-2 },
+        kidney:       { name:'Kidney disease',           adj:-2 },
+        mentalhealth: { name:'Mental health conditions', adj:-2 },
+        respiratory:  { name:'Respiratory disease',      adj:-2 },
+    };
+    let familyAdj = 0;
+    const familySelected = a.family.map(v => familyDefs[v]?.name || v);
+    a.family.forEach(v => { familyAdj += (familyDefs[v]?.adj || 0); });
+    const familyLabel = a.family.length === 0
+        ? 'None reported'
+        : familySelected.join(', ');
+
+    // Surgery per-procedure
+    const surgeryDefs = {
+        cardiac:  { name:'Cardiac surgery',        adj:-4 },
+        ortho:    { name:'Orthopaedic surgery',    adj:-2 },
+        neuro:    { name:'Neurological surgery',   adj:-4 },
+        oncology: { name:'Oncology treatment',     adj:-4 },
+    };
+    let surgeryAdj = 0;
+    const surgerySelected = a.surgeries.map(v => surgeryDefs[v]?.name || v);
+    a.surgeries.forEach(v => { surgeryAdj += (surgeryDefs[v]?.adj || 0); });
+    const surgeryLabel = a.surgeries.length === 0
+        ? 'None reported'
+        : surgerySelected.join(', ');
+
+    // Build rows
+    return [
+        // Biological
+        { group:'Biological', param:`Age (${ageVal})`,       ...ageFactor                        },
+        { group:null,          param:`Gender (${a.gender})`, ...genderAdj(a.gender)              },
+        { group:null,          param:`BMI (${bmiVal})`,      ...bmiAdj(bmiVal)                   },
+        { group:null,          param:'Blood pressure',       ...bpMap[a.bp]                      },
+        { group:null,          param:'Blood glucose',        ...glucoseMap[a.glucose]            },
+        { group:null,          param:'Cholesterol ratio',    ...cholMap[a.cholesterol]           },
+        // Behavioural
+        { group:'Behavioural', param:'Smoking',              ...smokingMap[a.smoking]            },
+        { group:null,          param:'Alcohol',              ...alcoholMap[a.alcohol]            },
+        { group:null,          param:'Physical activity',    ...activityMap[a.activity]          },
+        { group:null,          param:'Diet quality',         ...dietMap[a.diet]                  },
+        { group:null,          param:'Sleep quality',        ...sleepMap[a.sleep]                },
+        { group:null,          param:'Substance use',        ...substanceMap[a.substance]        },
+        // Psychological
+        { group:'Psychological / social', param:'Mental health',          ...mentalMap[a.mental]  },
+        { group:null,          param:'Chronic stress',       ...stressMap[a.stress]              },
+        { group:null,          param:'Socioeconomic status', ...socioMap[a.socio]                },
+        { group:null,          param:'Social connectedness', ...socialMap[a.social]              },
+        // Environmental / historical
+        { group:'Environmental / historical', param:'Air quality / environment', ...airMap[a.air] },
+        { group:null,          param:'Vaccination & preventive care',    ...vaccMap[a.vaccination]},
+        { group:null,          param:'Genetic / family history',         label:familyLabel, adj:familyAdj  },
+        { group:null,          param:'Prior surgeries',                  label:surgeryLabel, adj:surgeryAdj },
+    ];
+}
+
+/* Category sub-scores: each starts at 50, adjustments applied */
+function getCategoryScores(factors) {
+    const groups = ['Biological','Behavioural','Psychological / social','Environmental / historical'];
+    const sums = { 'Biological':0, 'Behavioural':0, 'Psychological / social':0, 'Environmental / historical':0 };
+    let currentGroup = null;
+    factors.forEach(f => {
+        if(f.group) currentGroup = f.group;
+        sums[currentGroup] = (sums[currentGroup] || 0) + f.adj;
+    });
+    const scores = {};
+    groups.forEach(g => { scores[g] = Math.min(100, Math.max(0, 50 + (sums[g] || 0))); });
+    return scores;
+}
+
+/* Overall score = 100 + total adjustments, clamped */
+function getOverallScore(factors) {
+    const total = factors.reduce((s, f) => s + f.adj, 0);
+    return Math.min(100, Math.max(0, 100 + total));
+}
+
+/* Tier config (HIGHER = better) */
+function getTier(score) {
+    if(score >= 75) return { id:'comp',  label:'Comprehensive cover', color:'#4ade80', barColor:'#4ade80'   };
+    if(score >= 55) return { id:'std',   label:'Standard plus',       color:'#c8e645', barColor:'#c8e645'   };
+    if(score >= 35) return { id:'basic', label:'Basic cover',         color:'#f59e0b', barColor:'#f59e0b'   };
+                    return { id:'risk',  label:'High risk',           color:'#ef4444', barColor:'#ef4444'   };
+}
+
+/* Nyx messages */
+function getNyxMsg(score, a) {
+    const tier = getTier(score);
+    if(score >= 75) return `<strong>your health profile is looking solid.</strong> You score in the "Comprehensive" tier — meaning standard cover will easily accept you at good rates. Still, even healthy people face unexpected events. A comprehensive plan locks in your low premium now before anything changes.`;
+    if(score >= 55) return `<strong>you're in decent shape, but a few factors are pulling your score down.</strong> The "Standard plus" tier means you're insurable at normal rates, but some specific risks in your profile need coverage. Check the breakdown below — the reds are where you should focus.`;
+    if(score >= 35) return `<strong>your profile has some real risk areas.</strong> The "Basic" tier means insurers will likely flag a few factors — possibly asking for higher premiums or excluding certain conditions. Get covered now, before your health changes further. Every month you wait costs more.`;
+    return `<strong>your score puts you in the high-risk tier — and i'm genuinely concerned.</strong> Multiple factors are dragging your score down significantly. You may face loading on premiums or exclusions. But the answer isn't to wait — it's to get whatever cover you can get, right now, and work on the factors you can change.`;
+}
+
+/* Insurance recommendations based on score and specific answers */
+function getRecommendations(score, a, catScores) {
+    const recs = [];
+    const bioScore = catScores['Biological'];
+    const behScore = catScores['Behavioural'];
+    const envScore = catScores['Environmental / historical'];
+
+    // Health Insurance
+    const healthUrg = score < 35 ? 'critical' : score < 55 ? 'high' : 'recommended';
+    let healthReason = 'A single hospitalisation costs ₹3–20L in India. Health insurance is the most fundamental cover anyone needs, regardless of how healthy you feel today.';
+    if(a.bp === 'high' || a.glucose === 'diabetic')
+        healthReason = 'Your blood pressure or glucose readings indicate significantly elevated hospitalisation risk. This is the single most important plan you need to get today.';
+    else if(a.smoking === 'current')
+        healthReason = 'Current smokers face 2× the hospitalisation risk of non-smokers. Your policy will be priced for this — but having cover is far better than not.';
+    recs.push({ icon:'🏥', type:'Health Insurance', urgency:healthUrg, cover:'₹5L–₹25L', premium:'from ₹450/month', reason:healthReason });
+
+    // Term Life
+    if(a.age >= 24) {
+        const termUrg = (score < 35 || a.age > 40 || a.family.includes('heartdisease') || a.family.includes('stroke')) ? 'critical' : a.age > 30 ? 'high' : 'recommended';
+        let termReason = 'If you have dependents or outstanding loans, term insurance ensures they\'re not left in financial chaos. Premiums are lowest when you\'re healthy — lock it in now.';
+        if(a.family.includes('heartdisease') || a.family.includes('stroke'))
+            termReason = 'With cardiac or stroke history in your family, your own risk profile is elevated. Term cover secured now will be cheaper than after any diagnosis.';
+        recs.push({ icon:'💔', type:'Term Life Insurance', urgency:termUrg, cover:'₹50L–₹2Cr', premium:'from ₹600/month', reason:termReason });
+    }
+
+    // Critical Illness
+    if(score < 60 || bioScore < 45 || envScore < 45 || a.family.includes('cancer') || a.family.includes('heartdisease') || a.surgeries.length > 0) {
+        const ciUrg = (score < 40 || a.family.includes('cancer') || a.surgeries.includes('cardiac')) ? 'critical' : 'high';
+        let ciReason = 'Your profile shows elevated risk factors for serious conditions. Critical illness cover pays a lump sum on diagnosis — covering lost income, caregivers, and treatment costs beyond hospitalisation.';
+        if(a.family.includes('cancer')) ciReason = 'Family history of cancer significantly raises your own risk. A CI plan pays ₹10–50L on diagnosis day — not just hospital bills but income replacement during recovery.';
+        recs.push({ icon:'🎗️', type:'Critical Illness Cover', urgency:ciUrg, cover:'₹10L–₹50L', premium:'from ₹800/month', reason:ciReason });
+    }
+
+    // Disability
+    if(behScore < 45 || a.smoking === 'current' || a.substance === 'regular' || a.surgeries.includes('neuro') || a.surgeries.includes('ortho')) {
+        recs.push({ icon:'🦽', type:'Disability Income Cover', urgency:'high', cover:'Up to 80% of salary/month', premium:'from ₹500/month', reason:'If illness or injury stops you from working, your EMIs don\'t pause. Disability income cover replaces your salary during recovery — preventing debt spiral.' });
+    }
+
+    // Home Insurance (lower priority, always useful)
+    recs.push({ icon:'🏠', type:'Home Insurance', urgency:'recommended', cover:'₹10L–₹50L', premium:'from ₹800/year', reason:'One fire, flood, or burglary can wipe out years of accumulated assets. Home insurance is the cheapest safety net most people forget about.' });
+
+    return recs;
+}
+
+/* ─── Animate count-up ─── */
+function countUp(el, target, ms=1200){
+    const start = performance.now();
+    (function step(now){
+        const p = Math.min(1,(now-start)/ms);
+        const e = 1-Math.pow(1-p,3);
+        el.textContent = Math.round(e*target);
+        if(p<1) requestAnimationFrame(step); else el.textContent = target;
+    })(start);
+}
+
+/* ─── Render breakdown rows ─── */
+function renderBreakdown(factors){
+    const el = document.getElementById('breakdown-list');
+    let html = '';
+    factors.forEach(f => {
+        if(f.group) {
+            html += `<div class="bd-group-label">${f.group}</div>`;
+        }
+        const adjCls  = f.adj > 0 ? 'pos' : f.adj < 0 ? 'neg' : 'zero';
+        const adjText = f.adj > 0 ? `+${f.adj}` : `${f.adj}`;
+        html += `<div class="bd-row">
+            <div class="bd-param">${f.param}</div>
+            <div class="bd-desc">${f.label}</div>
+            <div class="bd-badge ${adjCls}">${adjText}</div>
+        </div>`;
+    });
+    el.innerHTML = html;
+}
+
+/* ─── Render recommendations ─── */
+function renderRecs(recs){
+    document.getElementById('recs-list').innerHTML = recs.map(r => `
+        <div class="rec-card ${r.urgency}">
+            <div class="rec-icon">${r.icon}</div>
+            <div>
+                <span class="rec-urg ${r.urgency}">${r.urgency==='critical'?'🚨 critical':r.urgency==='high'?'⚡ high priority':'✦ recommended'}</span>
+                <div class="rec-type">${r.type}</div>
+                <p class="rec-reason">${r.reason}</p>
+                <div class="rec-meta">
+                    <div class="rec-meta-item">Cover: <strong>${r.cover}</strong></div>
+                    <div class="rec-meta-item">Premium: <strong>${r.premium}</strong></div>
+                </div>
+            </div>
+            <button class="rec-cta" onclick="window.location.href='index.html#insurance'">Get covered →</button>
+        </div>`).join('');
+}
+
+/* ─── MAIN CALCULATE ─── */
+function calculateAndShow(){
+    document.getElementById('progress-fill').style.width = '100%';
+    document.getElementById('progress-pct').textContent = '100%';
+
+    const factors  = getFactors(answers);
+    const score    = getOverallScore(factors);
+    const catScores= getCategoryScores(factors);
+    const tier     = getTier(score);
+    const recs     = getRecommendations(score, answers, catScores);
+
+    // Show results
+    const resultsEl = document.getElementById('results');
+    resultsEl.classList.add('visible');
+    setTimeout(() => resultsEl.scrollIntoView({ behavior:'smooth', block:'start' }), 80);
+
+    // Big score
+    const numEl = document.getElementById('big-score-num');
+    numEl.style.color = tier.color;
+    countUp(numEl, score);
+
+    // Score bar
+    const barFill = document.getElementById('score-bar-fill');
+    barFill.style.background = tier.barColor;
+    setTimeout(() => { barFill.style.width = score + '%'; }, 100);
+
+    // Tier label + legend
+    document.getElementById('tier-label').textContent = tier.label;
+    document.getElementById('tier-label').style.color = tier.color;
+    ['comp','std','basic','risk'].forEach(id => {
+        document.getElementById('tb-' + id).classList.remove('active-tier');
+    });
+    document.getElementById('tb-' + tier.id).classList.add('active-tier');
+
+    // Category scores
+    const catIds = ['bio','beh','psy','env'];
+    const catKeys = ['Biological','Behavioural','Psychological / social','Environmental / historical'];
+    catIds.forEach((id, i) => {
+        const s = catScores[catKeys[i]];
+        document.getElementById('cat-'+id+'-num').textContent = Math.round(s);
+        setTimeout(() => {
+            document.getElementById('cat-'+id+'-fill').style.width = Math.round(s) + '%';
+        }, 200 + i*80);
+    });
+
+    // Nyx message
+    document.getElementById('nyx-msg').innerHTML = getNyxMsg(score, answers);
+
+    // Breakdown table
+    renderBreakdown(factors);
+
+    // Recommendations
+    renderRecs(recs);
+}
+
+/* ─── RESET ─── */
+function resetForm(){
+    document.getElementById('results').classList.remove('visible');
+    window.scrollTo({ top:0, behavior:'smooth' });
+    document.getElementById('progress-fill').style.width = '50%';
+    document.getElementById('progress-pct').textContent = '50%';
+    document.getElementById('score-bar-fill').style.width = '0%';
+    document.getElementById('big-score-num').textContent = '—';
+}
+
+/* ─── Theme Toggle ─── */
+(function () {
+    const html = document.documentElement;
+    const btn  = document.getElementById('theme-toggle');
+    function apply(t) {
+        html.setAttribute('data-theme', t);
+        if (btn) btn.textContent = t === 'dark' ? '☀️' : '🌙';
+        localStorage.setItem('sf-theme', t);
+    }
+    apply(localStorage.getItem('sf-theme') || 'dark');
+    if (btn) btn.addEventListener('click', () => {
+        apply(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+})();
+</script>
+</body>
+</html>
